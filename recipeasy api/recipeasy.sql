@@ -5,8 +5,8 @@ SENG401 W2022 term project for Recipeasy
 
 Created February 25, 2022 by Jett Penner
 
-Current Version: 1.0
-Version Date: February 25, 2022
+Current Version: 1.1
+Version Date: February 28, 2022
 Version Author: Jett Penner
 
 */
@@ -32,7 +32,14 @@ USE RECIPEASY_MID;
 
 CREATE TABLE IF NOT EXISTS Posts (
 	p_id int NOT NULL,
-    r_id int NOT NULL
+    r_id int NOT NULL,
+    PRIMARY KEY (p_id, r_id)
+);
+
+CREATE TABLE IF NOT EXISTS Saves (
+	p_id int NOT NULL,
+    r_id int NOT NULL UNIQUE,
+    PRIMARY KEY (p_id, r_id)
 );
 
 -- Create the recipe read database --
