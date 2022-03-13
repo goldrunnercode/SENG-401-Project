@@ -16,6 +16,9 @@ import { ContentComponent } from './content/content.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatGridListModule,
     MatCardModule,
     LayoutModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    OverlayModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

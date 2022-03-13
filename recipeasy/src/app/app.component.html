@@ -2,8 +2,10 @@
 <mat-toolbar color="primary">
     RECIPEASY
     <button mat-button routerLink="/content">Home</button>
-    <button mat-button routerLink="/profile">Profile</button>
-    <!-- <button mat-button (click)="openSearchDialog()">Search</button> -->
+    <div> 
+        <app-search></app-search>
+    </div>
+
     <span class="spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
       <mat-icon aria-label="My Account">account_box</mat-icon>
