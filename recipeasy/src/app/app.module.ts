@@ -16,6 +16,7 @@ import { ContentComponent } from './content/content.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     ProfileComponent,
     SearchComponent,
     ContentComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
