@@ -19,6 +19,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     ProfileComponent,
     SearchComponent,
     ContentComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
