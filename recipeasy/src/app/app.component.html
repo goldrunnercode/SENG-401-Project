@@ -2,7 +2,7 @@
 <mat-toolbar color="primary">
     RECIPEASY
     <button mat-button routerLink="/content">Home</button>
-    <div> 
+    <div>
         <app-search></app-search>
     </div>
 
@@ -11,18 +11,13 @@
       <mat-icon aria-label="My Account">account_box</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="">
-
-          <span>Sign in</span>
-        </button>
-        <button mat-menu-item routerLink="">
-
-          <span>Sign out</span>
-        </button>
-        <button mat-menu-item routerLink="">
-
-        <span>Create Account</span>
-      </button>
+      <div *ngIf="!signed_in" >
+        <app-sign-in></app-sign-in>
+      </div>
+      <button *ngIf="signed_in"  mat-menu-item><span>View Profile</span></button>
+      <button *ngIf="signed_in"  mat-menu-item><span>Post</span></button>
+      <button *ngIf="signed_in"  mat-menu-item (click)="onSignOut()"><span>Sign out</span></button>
+      <button *ngIf="!signed_in" mat-menu-item routerLink="/create-account"><span>Create Account</span></button>
     </mat-menu>
 </mat-toolbar>
 

@@ -20,6 +20,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SignInDialogComponent } from './sign-in-dialog/sign-in-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+
+
+
 
 @NgModule({
   declarations: [
@@ -29,6 +39,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     SearchComponent,
     ContentComponent,
     SignInComponent,
+    SignInDialogComponent,
+    CreateAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +56,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatFormFieldModule,
     MatCheckboxModule,
     OverlayModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

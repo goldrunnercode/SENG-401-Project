@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Sign In</h2>
+<div mat-dialog-content>
+  <p>
+    Please you email and password in the given fields.
+  </p>
+  <div>
+    <div>
+      <mat-form-field appearence="fill">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" type="text" [(ngModel)]="dat.email">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input matInput name="password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="dat.password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+  <div>
+    <button mat-button color="primary" [mat-dialog-close]="dat" cdkFocusInitial>Sign in</button>
+    <button mat-button color="primary" (click)="onNoClick()">Cancel</button>
+  </div>
+</div>
