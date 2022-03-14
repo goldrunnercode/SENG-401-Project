@@ -27,6 +27,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { AuthenticationService } from './services/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -41,6 +44,7 @@ import { MatRadioModule } from '@angular/material/radio';
     SignInComponent,
     SignInDialogComponent,
     CreateAccountComponent,
+    MenuBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,8 +66,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

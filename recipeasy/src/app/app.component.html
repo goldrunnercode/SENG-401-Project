@@ -1,28 +1,7 @@
-
-<mat-toolbar class="mat-elevation-z8" color="primary">
-    <a mat-button routerLink="/">
-      <img [width]="110" [src]="'../../assets/logo.png'" alt="logo"/>
-    </a>
-    <button mat-button routerLink="/">Home</button>
-    <div>
-        <app-search></app-search>
-    </div>
-
-    <span class="spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
-      <mat-icon aria-label="My Account">account_box</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <div *ngIf="!signed_in" >
-        <app-sign-in></app-sign-in>
-      </div>
-      <button *ngIf="signed_in"  mat-menu-item><span>View Profile</span></button>
-      <button *ngIf="signed_in"  mat-menu-item><span>Post</span></button>
-      <button *ngIf="signed_in"  mat-menu-item (click)="onSignOut()"><span>Sign out</span></button>
-      <button *ngIf="!signed_in" mat-menu-item routerLink="/create-account"><span>Create Account</span></button>
-    </mat-menu>
-</mat-toolbar>
-
+<app-menu-bar></app-menu-bar>
 <div class="main-page">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
+
+
+

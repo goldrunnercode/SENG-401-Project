@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AppComponent } from '../app.component';
+import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { SignInDialogComponent } from '../sign-in-dialog/sign-in-dialog.component';
+//import {AuthenticationService} from '../services/authentication.service';
+//import {Subscription} from "rxjs"
 
 
 
@@ -13,8 +17,12 @@ export class SignInComponent implements OnInit {
   email !: string
   password !: string
   submit !: boolean
+  //subscription!: Subscription;
 
-  constructor(public dialog: MatDialog){}
+
+  constructor(public dialog: MatDialog, public app: MenuBarComponent){
+
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(SignInDialogComponent, {
@@ -31,6 +39,20 @@ export class SignInComponent implements OnInit {
           this.password = result.password;
           console.log(this.email)
           console.log(this.password)
+
+          const currentUser = {
+            email: this.email,
+            password: this.password,
+          }
+
+          //verify user
+
+          //sign user in
+          this.app.signIn(currentUser);
+
+          //reset form
+          this.email = "";
+          this.password = "";
         }
         else{
           alert("Please fill in all fields")

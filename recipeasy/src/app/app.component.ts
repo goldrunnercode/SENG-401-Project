@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
-export class CurrentUser {
-  email!: string;
-  password!: string;
+export interface User {
+  email: string;
+  password: string;
 }
 
 @Component({
@@ -12,22 +12,6 @@ export class CurrentUser {
 })
 export class AppComponent {
   title = 'recipeasy';
-  current!: CurrentUser;
-  signed_in = false;
-
-
-  onSigneIn(): void{
-
-  }
-
-  onSignOut(): void {
-    if(this.current.email == undefined){
-      alert("You are already signed out");
-    }
-    else{
-
-    }
-  }
 }
 
 
