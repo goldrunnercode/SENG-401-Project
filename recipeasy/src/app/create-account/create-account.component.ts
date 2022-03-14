@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -14,7 +15,7 @@ export class CreateAccountComponent {
     password: [null, Validators.required],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   onSubmit(): void {
 
@@ -40,7 +41,8 @@ export class CreateAccountComponent {
     }
 
     // Add new user
+    this.router.navigate(['../content']);
+    alert("Account Created.\nSign in to access account");
 
-    alert('Thanks!');
   }
 }
