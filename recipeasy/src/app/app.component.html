@@ -1,7 +1,9 @@
 
-<mat-toolbar color="primary">
-    RECIPEASY
-    <button mat-button routerLink="/content">Home</button>
+<mat-toolbar class="mat-elevation-z8" color="primary">
+    <a mat-button routerLink="/">
+      <img [width]="110" [src]="'../../assets/logo.png'" alt="logo"/>
+    </a>
+    <button mat-button routerLink="/">Home</button>
     <div>
         <app-search></app-search>
     </div>
@@ -21,6 +23,6 @@
     </mat-menu>
 </mat-toolbar>
 
-<div style="padding: 40px">
+<div class="main-page">
     <router-outlet></router-outlet>
 </div>

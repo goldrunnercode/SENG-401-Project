@@ -6,9 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'content', component: ContentComponent },
+  { path: '', component: ContentComponent },
   { path: 'create-account', component: CreateAccountComponent },
 ];
 
