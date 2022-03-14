@@ -13,7 +13,9 @@ export class AuthenticationService {
   private subject = new Subject<any>();
   user: User = {
     email: '',
-    password: ''
+    password: '',
+    first_name: '',
+    last_name: ''
   };
 
   constructor(private http: HttpClient) { }
@@ -21,6 +23,8 @@ export class AuthenticationService {
   signIn(user: any): void {
     this.user.email = user.email;
     this.user.password = user.password;
+    this.user.first_name = user.first_name;
+    this.user.last_name = user.last_name;
     this.signed_in = true;
     this.subject.next(this.signed_in);
   }
@@ -29,10 +33,20 @@ export class AuthenticationService {
     this.signed_in = false;
     this.user.email = '';
     this.user.password = '';
+    this.user.first_name = '';
+    this.user.last_name = '';
     this.subject.next(this.signed_in);
   }
 
+  getProfile(): void {
+    this.subject.next(this.user);
+  }
+
   authenticateUser(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
+  profileInfo(): Observable<User> {
     return this.subject.asObservable();
   }
 }

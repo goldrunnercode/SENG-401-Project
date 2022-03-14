@@ -43,6 +43,8 @@ export class SignInComponent implements OnInit {
           const currentUser = {
             email: this.email,
             password: this.password,
+            first_name: 'Eli',
+            last_name: 'St. James'
           }
 
           //verify user

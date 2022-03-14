@@ -30,8 +30,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
@@ -67,6 +66,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatRadioModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatTabsModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

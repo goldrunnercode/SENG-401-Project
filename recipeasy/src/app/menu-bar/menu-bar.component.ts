@@ -11,7 +11,9 @@ import { User } from '../app.component';
 export class MenuBarComponent implements OnInit {
   current: User = {
     email: '',
-    password: ''
+    password: '',
+    first_name: '',
+    last_name: ''
   };
   signed_in = false;
   subscription!: Subscription;
@@ -22,6 +24,10 @@ export class MenuBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.authService.authenticateUser().subscribe((value) => (this.signed_in = value));
+  }
+
+  viewProfile(): void {
+    this.authService.getProfile();
   }
 
   signIn(user: User): void{
