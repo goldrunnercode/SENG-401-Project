@@ -1,7 +1,10 @@
 .grid-container {
-  margin: 20px;
+  margin: 10px;
 }
 
+.big-grid-container {
+  margin: 50px;
+}
 
 
 .more-button {

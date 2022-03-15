@@ -1,6 +1,10 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <mat-dialog-content>
     <div fxLayout="column">
+      <p>
+        authored by : {{data?.author}}
+      </p>
+      <img mat-card-image src='{{data?.image}}' alt="Photo of dish">
         <b>Ingredients:</b>
         <ul>
             <p *ngFor="let ingredient of data.ingredients">
@@ -18,11 +22,6 @@
                 </li>
             </p>
         </ol>
-
-        <img mat-card-image src='{{data?.image}}' alt="Photo of dish">
-        <p>
-            authored by : {{data?.author}}
-        </p>
     </div>
     <div mat-dialog-actions>
         <button mat-button mat-dialog-close>Close</button>
