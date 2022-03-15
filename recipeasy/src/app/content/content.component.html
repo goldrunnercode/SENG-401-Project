@@ -1,4 +1,4 @@
-<div class="grid-container">
+<!-- <div class="grid-container">
   <h1 class="mat-h1">Search Results:</h1>
   <mat-grid-list cols="2" rowHeight="500px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
@@ -19,6 +19,15 @@
           <div>Card Content Here</div>
         </mat-card-content>
       </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div> -->
+
+<div class="grid-container">
+  <h1 class="mat-h1">Recipes:</h1>
+  <mat-grid-list cols="2" rowHeight="650px">
+    <mat-grid-tile *ngFor="let card of recipes">
+      <app-recipe [recipeCard]="card"></app-recipe>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

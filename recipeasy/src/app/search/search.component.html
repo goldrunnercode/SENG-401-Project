@@ -3,13 +3,13 @@
 <ng-template style="width: 100%;" cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
     [cdkConnectedOverlayOpen]="isOpen">
 
-    <div fxLayout="column" style="background: #fff;  border: solid 1px; border-radius: 10px">
+    <div fxLayout="column" fxLayoutAlign="space-evenly" style="background: #fff;  border: solid 2px; border-radius: 10px">
         <div fxLayout="row" style="align-items: center;">
             <mat-label style="padding: 10px;"><b>
                     Cuisine</b>
             </mat-label>
             <span *ngFor="let cuisine of cuisines">
-                <mat-checkbox (change)="filterCuisine($event)" style="padding: 10px;" [value]="cuisine.toLowerCase()">
+                <mat-checkbox [checked]="checkState(cuisine.toLowerCase())" (change)="filterCuisine($event)" style="padding: 10px;" [value]="cuisine.toLowerCase()">
                     {{cuisine}}
                 </mat-checkbox>
             </span>
@@ -18,7 +18,7 @@
         <div fxLayout="row" style="align-items: center;">
             <mat-label style="padding: 10px;"><b>Category</b></mat-label>
             <span *ngFor="let category of categories">
-                <mat-checkbox (change)="filterCategory($event)" style="padding: 10px;" [value]="category.toLowerCase()">
+                <mat-checkbox [checked]="checkState(category.toLowerCase())" (change)="filterCategory($event)" style="padding: 10px;" [value]="category.toLowerCase()">
                     {{category}}
                 </mat-checkbox>
             </span>
@@ -26,22 +26,18 @@
 
         <div fxLayout="row" style="align-items: center;">
             <mat-label style="padding: 10px;"><b>Vegetarian</b></mat-label>
-            <mat-checkbox (change)="vegetarian = !vegetarian" style="padding: 5px">
+            <mat-checkbox [checked]="vegetarian" (change)="vegetarian = !vegetarian" style="padding: 10px">
             </mat-checkbox>
 
             <mat-label style="padding: 10px;"><b>Gluten Free</b></mat-label>
-            <mat-checkbox (change)="glutenFree = !glutenFree" style="padding: 5px">
+            <mat-checkbox [checked]="glutenFree" (change)="glutenFree = !glutenFree" style="padding: 10px">
             </mat-checkbox>
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between">
-            <div>
-                <button mat-button color="primary" (click)="clearFilters()">Clear all filters</button>
-            </div>
-            <div>
-                <button mat-button color="primary" (click)="isOpen = false">Cancel</button>
-                <button mat-button color="primary" (click)="filterRecipes()">Apply</button>
-            </div>
+            <button mat-button color="primary" (click)="clearFilters()">Clear all filters</button>
+            <button mat-button color="primary" (click)="isOpen = false">Cancel</button>
+            <button mat-button color="primary" (click)="filterRecipes()">Apply</button>
         </div>
     </div>
 </ng-template>

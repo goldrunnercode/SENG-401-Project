@@ -37,5 +37,38 @@ export class ContentComponent {
     })
   );
 
+  // colSize = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+  //   map(({ matches }) => {
+  //     if (matches) {
+  //       return 2;
+  //     }
+  //     return 1;
+  //   })
+  // );
+
+  recipes = [
+    {
+      title: 'Pizza',
+      ingredients: ['dough','sauce', 'toppings'],
+      instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      author: 'user44@email.com'
+    },
+    {
+      title: 'Sauce',
+      ingredients: ['tomato','pepper', 'oil'],
+      instructions : ['cut up ingredients','blend'],
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      author: 'user20@email.com'
+    },
+    {
+      title: 'Hambuger',
+      ingredients: ['meat','buns', 'ketchup'],
+      instructions : ['smash meat','cook', 'put on toppings'],
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      author: 'user49@email.com'
+    },
+  ];
+
   constructor(private breakpointObserver: BreakpointObserver) {}
 }

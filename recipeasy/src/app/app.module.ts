@@ -31,7 +31,8 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule} from "@angular/material/tabs";
-
+import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,8 @@ import { MatTabsModule} from "@angular/material/tabs";
     SignInDialogComponent,
     CreateAccountComponent,
     MenuBarComponent,
+    RecipeComponent,
+    RecipeViewComponent,
   ],
   imports: [
     BrowserModule,

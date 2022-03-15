@@ -35,25 +35,21 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  // filterVeg(veg: any){
-  //   if(veg.checked){
-  //     this.vegetarian = !this.vegetarian;
-  //     console.log("vegetarian is selected")
-  //   }
-  // }
-
-  // filterGluten(gluten: any){
-  //   if(gluten.checked){
-  //     console.log("gluten free is selected")
-  //   }
-  // }
+  checkState(input: any){
+    if(this.categoryFilter.includes(input) || this.cuisineFilter.includes(input)){
+      return true;
+    }
+    return false;
+  }
 
   filterRecipes() {
-    console.log(`categories ${this.categoryFilter}`);
-    console.log(`cuisines ${this.cuisineFilter}`);
-    console.log(`vegetarian ${this.vegetarian}`);
-    console.log(`gluten free ${this.glutenFree}`);
-    console.log("filter applied");
+    let filter = {
+      categories: this.categoryFilter,
+      cuisine: this.cuisineFilter,
+      veg: this.vegetarian,
+      gluten: this.glutenFree
+    }
+    console.log("Recipe filters: ", filter);
   }
 
   clearFilters() {

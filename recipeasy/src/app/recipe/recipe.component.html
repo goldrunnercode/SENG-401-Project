@@ -1,0 +1,19 @@
+
+<mat-card class="recipe-card" style="margin: 8px;">
+    <mat-card-header>
+      <mat-card-title>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            {{recipeCard?.title}}
+            <button mat-icon-button (click)="openRecipe()">
+                <mat-icon>restaurant</mat-icon>
+            </button>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src='{{recipeCard?.image}}' alt="Photo of dish">
+    <mat-card-content class="dashboard-card-content">
+      <p>
+        Authored by : {{recipeCard?.author}}
+      </p>
+    </mat-card-content>
+  </mat-card>
