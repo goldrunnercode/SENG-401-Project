@@ -16,7 +16,7 @@
       <app-sign-in></app-sign-in>
     </div>
     <button *ngIf="signed_in"  mat-menu-item routerLink="/profile" (click)="viewProfile()"><span>View Profile</span></button>
-    <button *ngIf="signed_in"  mat-menu-item><span>Post</span></button>
+    <button *ngIf="signed_in"  mat-menu-item routerLink="/post-recipe"><span>Post</span></button>
     <button *ngIf="signed_in"  mat-menu-item (click)="onSignOut()" routerLink="/"><span>Sign out</span></button>
     <button *ngIf="!signed_in" mat-menu-item routerLink="/create-account"><span>Create Account</span></button>
   </mat-menu>

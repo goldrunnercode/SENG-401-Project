@@ -1,0 +1,19 @@
+.hiddenFileInput > input{
+
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin: 16px;
+}
+
+.example-section {
+  margin: 12px 0;
+}

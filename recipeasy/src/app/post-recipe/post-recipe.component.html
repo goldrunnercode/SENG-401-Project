@@ -1,0 +1,86 @@
+
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Choose your image</ng-template>
+      <div class="container">
+        <div >
+          <div >
+            <span class="hiddenFileInput">
+              <input class="choose-file-btn" type="file" (change)="fileChangeEvent($event)" />
+            </span>
+            <div style="height: 50%;">
+              <div class="text-center ">
+
+                <image-cropper style="width: 500px"
+                               [imageChangedEvent]="imageChangedEvent"
+                               [maintainAspectRatio]="true"
+                               [aspectRatio]="4 / 4"
+                               [resizeToWidth]="256"
+                               format="png"
+                               (imageCropped)="imageCropped($event)"
+                               (imageLoaded)="imageLoaded()"
+                               (cropperReady)="cropperReady()"
+                               (loadImageFailed)="loadImageFailed()"></image-cropper>
+              </div>
+              <!--
+              <div class="text-center col-md-4">
+                <h5>Preview</h5>
+                <img [src]="croppedImage" />
+              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Specifications</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Cuisine</mat-label>
+        <mat-select [(value)]="selectedCuisine">
+          <mat-option>None</mat-option>
+          <mat-option value="indian">Indian</mat-option>
+          <mat-option value="mexican">Mexican</mat-option>
+          <mat-option value="chinese">Chinese</mat-option>
+          <mat-option value="vietnamese">Vietnamese</mat-option>
+          <mat-option value="italian">Italian</mat-option>
+          <mat-option value="american">American</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select [(value)]="selectedCategory">
+          <mat-option value="breakfast">Breakfast</mat-option>
+          <mat-option value="lunch">Lunch</mat-option>
+          <mat-option value="dinner">Dinner</mat-option>
+          <mat-option value="dessert">Dessert</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <section class="example-section" [formGroup]="specs">
+        <p><mat-checkbox formControlName="vegetarian">Vegetarian</mat-checkbox></p>
+        <p><mat-checkbox formControlName="gluten_free">Gluten Free </mat-checkbox></p>
+
+      </section>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="checkValues()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+
+

@@ -1,8 +1,8 @@
-<!-- <div class="grid-container">
+ <div class="grid-container">
   <h1 class="mat-h1">Search Results:</h1>
-  <mat-grid-list cols="2" rowHeight="500px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="mat-elevation-z4" class="dashboard-card">
+  <mat-grid-list *ngIf="isHandset" cols="1" rowHeight="500px">
+    <mat-grid-tile *ngFor="let card of recipes">
+      <mat-card class="mat-elevation-z4" class="dashboard-card" >
         <mat-card-header>
           <mat-card-title>
             {{card.title}}
@@ -21,13 +21,20 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-</div> -->
 
-<div class="grid-container">
-  <h1 class="mat-h1">Recipes:</h1>
-  <mat-grid-list cols="2" rowHeight="650px">
-    <mat-grid-tile *ngFor="let card of recipes">
-      <app-recipe [recipeCard]="card"></app-recipe>
-    </mat-grid-tile>
-  </mat-grid-list>
+   <mat-grid-list *ngIf="!isHandset" cols="2" rowHeight="500px">
+     <mat-grid-tile *ngFor="let card of recipes">
+       <app-recipe [recipeCard]="card"></app-recipe>
+     </mat-grid-tile>
+   </mat-grid-list>
 </div>
+ <!--
+ <div class="grid-container">
+   <h1 class="mat-h1">Recipes:</h1>
+   <mat-grid-list cols="2" rowHeight="650px">
+     <mat-grid-tile *ngFor="let card of recipes">
+       <app-recipe [recipeCard]="card"></app-recipe>
+     </mat-grid-tile>
+   </mat-grid-list>
+ </div>
+-->

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -33,6 +34,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule} from "@angular/material/tabs";
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { PostRecipeComponent } from './post-recipe/post-recipe.component';
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
     MenuBarComponent,
     RecipeComponent,
     RecipeViewComponent,
+    PostRecipeComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,8 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatTabsModule,
+    ImageCropperModule,
+    MatStepperModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

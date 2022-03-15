@@ -1,8 +1,8 @@
 
-<mat-card class="recipe-card" style="margin: 8px;">
+<mat-card class="recipe-card" class="mat-elevation-z4" class="dashboard-card">
     <mat-card-header>
       <mat-card-title>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
             {{recipeCard?.title}}
             <button mat-icon-button (click)="openRecipe()">
                 <mat-icon>restaurant</mat-icon>
@@ -10,7 +10,7 @@
         </div>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src='{{recipeCard?.image}}' alt="Photo of dish">
+    <img width="300" mat-card-image src='{{recipeCard?.image}}' alt="Photo of dish">
     <mat-card-content class="dashboard-card-content">
       <p>
         Authored by : {{recipeCard?.author}}

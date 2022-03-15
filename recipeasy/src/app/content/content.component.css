@@ -2,18 +2,7 @@
   margin: 20px;
 }
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-}
 
-.dashboard-card:hover {
-  background-color: lightgrey;
-}
 
 .more-button {
   position: absolute;
