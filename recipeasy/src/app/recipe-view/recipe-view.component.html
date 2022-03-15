@@ -1,4 +1,7 @@
-<h1 mat-dialog-title>{{data.title}}</h1>
+<h1 mat-dialog-actions mat-dialog-title>{{data.title}}
+    <button mat-raised-button color="accent" style="margin-left:50px" mat-dialog-close>Close</button>
+</h1>
+
 <mat-dialog-content>
     <div fxLayout="column">
       <p>
@@ -23,7 +26,7 @@
             </p>
         </ol>
     </div>
-    <div mat-dialog-actions>
-        <button mat-button mat-dialog-close>Close</button>
-    </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+  </div>
 </mat-dialog-content>

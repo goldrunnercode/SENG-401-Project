@@ -1,9 +1,9 @@
 
-<mat-card class="recipe-card" class="mat-elevation-z4" class="dashboard-card">
+<mat-card class="recipe-card" class="mat-elevation-z4" class="dashboard-card" (click)="openRecipe()">
     <mat-card-header>
       <mat-card-title>
         <div>
-            {{recipeCard?.title}}
+          {{recipeCard?.title}}
             <button mat-icon-button (click)="openRecipe()">
                 <mat-icon>restaurant</mat-icon>
             </button>
