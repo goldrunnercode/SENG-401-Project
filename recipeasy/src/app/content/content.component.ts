@@ -2,7 +2,7 @@ import {Component, HostListener} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {from, Observable} from "rxjs";
-import {images} from './images'
+import {images} from './images';
 
 @Component({
   selector: 'app-content',
