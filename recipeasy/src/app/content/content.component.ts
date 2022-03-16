@@ -50,42 +50,42 @@ export class ContentComponent {
       title: 'Pizza',
       ingredients: ['dough','sauce', 'toppings'],
       instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      image: images[0],
+      image: images[1],
       author: 'user44@email.com'
     },
     {
       title: 'Sauce',
       ingredients: ['tomato','pepper', 'oil'],
       instructions : ['cut up ingredients','blend'],
-      image: images[0],
+      image: images[1],
       author: 'user20@email.com'
     },
     {
       title: 'Hambuger',
       ingredients: ['meat','buns', 'ketchup'],
       instructions :   ['smash meat','cook', 'put on toppings'],
-      image: images[0],
+      image: images[1],
       author: 'user49@email.com'
     },
     {
       title: 'Pizza',
       ingredients: ['dough','sauce', 'toppings'],
       instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      image: images[0],
+      image: images[1],
       author: 'user44@email.com'
     },
     {
       title: 'Sauce',
       ingredients: ['tomato','pepper', 'oil'],
       instructions : ['cut up ingredients','blend'],
-      image: images[0],
+      image: images[1],
       author: 'user20@email.com'
     },
     {
       title: 'Hambuger',
       ingredients: ['meat','buns', 'ketchup'],
       instructions :   ['smash meat','cook', 'put on toppings'],
-      image: images[0],
+      image: images[1],
       author: 'user49@email.com'
     },
     {
