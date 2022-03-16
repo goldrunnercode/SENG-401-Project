@@ -37,6 +37,22 @@ export class PostRecipeComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
+  imageChosen(): boolean {
+    if(this.croppedImage == ''){
+      this.isLinear = true;
+      return false;
+    }
+    this.isLinear = false;
+    return true;
+  }
+
+  allFilled(): boolean {
+
+
+
+    return true;
+  }
+
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
   }

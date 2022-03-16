@@ -33,7 +33,7 @@
         </div>
       </div>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button *ngIf="imageChosen()" mat-raised-button color="primary" matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
@@ -67,8 +67,8 @@
 
       </section>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="checkValues()">Next</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="checkValues()">Next</button>
+        <button style="margin-left: 5px;" mat-raised-button color="accent" matStepperPrevious>Back</button>
       </div>
     </form>
   </mat-step>

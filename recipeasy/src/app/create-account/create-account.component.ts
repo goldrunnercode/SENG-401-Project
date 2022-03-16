@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Observable} from "rxjs";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-create-account',
@@ -14,8 +17,33 @@ export class CreateAccountComponent {
     email: [null, Validators.required],
     password: [null, Validators.required],
   });
+  isHandset: boolean = false;
+  public innerWidth: any;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private fb: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    this.isHandsetObserver.subscribe(currentObserverValue => {
+      this.isHandset = currentObserverValue;
+      console.log(this.innerWidth);
+    })
+  }
+
+  isHandsetObserver: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(({ matches }) => {
+      if (matches) {
+        return true;
+      }
+      return false;
+    })
+  );
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.innerWidth = event.target.innerWidth;
+    console.log(this.innerWidth);
+  }
 
   onSubmit(): void {
 
