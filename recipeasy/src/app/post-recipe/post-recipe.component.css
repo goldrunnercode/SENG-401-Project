@@ -17,3 +17,8 @@
 .example-section {
   margin: 12px 0;
 }
+
+.list-card {
+  margin-top: 15px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}

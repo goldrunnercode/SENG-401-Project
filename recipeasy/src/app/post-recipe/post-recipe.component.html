@@ -40,6 +40,16 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Specifications</ng-template>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input 
+          appearance="fill" 
+          matInput placeholder="Title" 
+          type="text" [(ngModel)]="title" 
+          [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </div>
       <mat-form-field appearance="fill">
         <mat-label>Cuisine</mat-label>
         <mat-select [(value)]="selectedCuisine">
@@ -64,20 +74,65 @@
       <section class="example-section" [formGroup]="specs">
         <p><mat-checkbox formControlName="vegetarian">Vegetarian</mat-checkbox></p>
         <p><mat-checkbox formControlName="gluten_free">Gluten Free </mat-checkbox></p>
-
       </section>
       <div>
-        <button mat-raised-button color="primary" matStepperNext (click)="checkValues()">Next</button>
+        <button *ngIf="titleInputted()" mat-raised-button color="primary" matStepperNext>Next</button>
         <button style="margin-left: 5px;" mat-raised-button color="accent" matStepperPrevious>Back</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <ng-template matStepLabel>Ingredients</ng-template>
+    <mat-card class="list-card">
+      <mat-card-header>Your Ingredients:</mat-card-header>
+      <mat-card-content>
+        <mat-list dense role="list">
+          <mat-list-item *ngFor="let item of new.ingredients">
+            - {{item}}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <mat-form-field appearance="fill">
+          <mat-label>Add Ingredient</mat-label>
+          <input appearance="fill" matInput placeholder="Ingredient" type="text" [(ngModel)]="newItem">
+        </mat-form-field>
+        <button *ngIf="listInputFilled()" mat-raised-button color="primary" (click)="addIngredient()">Add</button>
+      </mat-card-actions>
+    </mat-card>
+    <div style="margin-top: 10px;">
+      <button mat-raised-button color="primary" matStepperNext>Next</button>
+      <button style="margin-left: 10px;" mat-raised-button color="accent" matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Instructions</ng-template>
+    <mat-card class="list-card">
+      <mat-card-header>Instruction steps:</mat-card-header>
+      <mat-card-content>
+        <mat-list dense role="list">
+          <mat-list-item *ngFor="let step of new.instructions">
+            - {{step}}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <mat-form-field appearance="fill">
+          <mat-label>Add Step</mat-label>
+          <input appearance="fill" matInput placeholder="Ingredient" type="text" [(ngModel)]="newItem">
+        </mat-form-field>
+        <button *ngIf="listInputFilled()" mat-raised-button color="primary" (click)="addInstruction()">Add</button>
+      </mat-card-actions>
+    </mat-card>
+    <div style="margin-top: 10px">
+      <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+      <button style="margin-left: 5px"
+              color="primary"
+              mat-raised-button
+              (click)="onSubmit()"
+              routerLink="/">
+        Upload
+      </button>
     </div>
   </mat-step>
 </mat-stepper>

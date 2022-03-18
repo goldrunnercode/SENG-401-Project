@@ -11,6 +11,7 @@ export class AuthenticationService {
   private apiUrl = 'http://localhost:8008/user'
   private signed_in: boolean = false;
   private subject = new Subject<any>();
+  private userSubject = new Subject<User>();
   user: User = {
     email: '',
     password: '',
@@ -38,8 +39,8 @@ export class AuthenticationService {
     this.subject.next(this.signed_in);
   }
 
-  getProfile(): void {
-    this.subject.next(this.user);
+  getProfile(): User {
+    return this.user;
   }
 
   authenticateUser(): Observable<any> {
@@ -47,6 +48,8 @@ export class AuthenticationService {
   }
 
   profileInfo(): Observable<User> {
-    return this.subject.asObservable();
+    return this.userSubject.asObservable();
   }
+
+
 }

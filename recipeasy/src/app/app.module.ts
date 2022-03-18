@@ -37,6 +37,7 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PostRecipeComponent } from './post-recipe/post-recipe.component';
 import {MatStepperModule} from "@angular/material/stepper";
+import { MatList, MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatTabsModule,
     ImageCropperModule,
     MatStepperModule,
+    MatListModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

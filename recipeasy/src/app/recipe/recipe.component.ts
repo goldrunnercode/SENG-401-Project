@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipeViewComponent } from '../recipe-view/recipe-view.component';
 
-interface recipe{
+export interface recipe{
   title: string,
   ingredients: string[],
   instructions: string[],
