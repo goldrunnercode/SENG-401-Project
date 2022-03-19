@@ -17,19 +17,11 @@ export class ProfileComponent implements OnInit {
     last_name: ''
   };
 
-  tmp !: User;
-
-  subscription!: Subscription;
-
   constructor( private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
-    this.subscription = this.authService.profileInfo().subscribe((current) => this.user = current);
-    console.log(this.user.email);
-    console.log(this.user.password);
-    console.log(this.user.first_name);
-    console.log(this.user.last_name);
+    this.user = this.authService.getProfile();
   }
 
 }
