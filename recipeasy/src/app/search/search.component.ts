@@ -24,15 +24,19 @@ export class SearchComponent implements OnInit {
   filterCategory(category: any) {
     if (category.checked) {
       this.categoryFilter.push(category.source.value);
-      console.log(`category ${category.source.value} is selected`);
+    }else{
+      this.categoryFilter = this.categoryFilter.filter(c => c !== category.source.value);
     }
+    console.log("category filter: ", this.categoryFilter);
   }
 
   filterCuisine(cuisine: any) {
     if (cuisine.checked) {
       this.cuisineFilter.push(cuisine.source.value);
-      console.log(`cuisine ${cuisine.source.value} is selected`);
+    }else{
+      this.cuisineFilter = this.cuisineFilter.filter(c => c !== cuisine.source.value);
     }
+    console.log("cuisine filter: ", this.cuisineFilter);
   }
 
   checkState(input: any){
