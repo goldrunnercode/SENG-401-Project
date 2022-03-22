@@ -5,10 +5,13 @@ interface recipeData{
   title: string,
   ingredients: string[],
   instructions: string[],
+  category: string,
+  cuisine: string,
+  vegetarian: boolean,
+  glutenFree: boolean,
   image: string,
   author: string
 };
-
 @Component({
   selector: 'app-recipe-view',
   templateUrl: './recipe-view.component.html',
