@@ -38,6 +38,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { PostRecipeComponent } from './post-recipe/post-recipe.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import { MatList, MatListModule } from '@angular/material/list';
+import { RecipesService } from './services/recipes.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { MatList, MatListModule } from '@angular/material/list';
     MatStepperModule,
     MatListModule,
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, RecipesService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
