@@ -3,7 +3,37 @@
     <div class="profile">
       <h1 class="profile-title"><u>{{user.first_name}} {{user.last_name}}</u></h1>
     </div>
+    <div class = "profile-info">
+      <h3>Email: {{user.email}}</h3>
+      <h4>Password: {{user.password}}</h4>
+    </div>
+    <div>
+      <button (click) = "onEdit()"  mat-raised-button color="primary">{{editToggleString}}</button>
+      <button (click) = "onDelete()" style = "margin-left: 10px;" mat-raised-button color="warn">Delete Profile</button>
+    </div>
+    <div style="margin-top:10px;" *ngIf = "editMode()">
+
+      <mat-form-field class = "update-field" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input appearance="fill" matInput placeholder="email" type="text" [(ngModel)]="editUser.email">
+      </mat-form-field>
+      <mat-form-field class = "update-field" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input appearance="fill" matInput placeholder="password" type="text" [(ngModel)]="editUser.password">
+      </mat-form-field> 
+      <mat-form-field class = "update-field" appearance="fill"> 
+        <mat-label>First Name</mat-label>
+        <input appearance="fill" matInput placeholder="first name" type="text" [(ngModel)]="editUser.first_name">
+      </mat-form-field>
+      <mat-form-field class = "update-field" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input appearance="fill" matInput placeholder="last name" type="text" [(ngModel)]="editUser.last_name">
+      </mat-form-field>
+      <button (click) = "editProfile()"  mat-raised-button color="primary">Submit</button>
+    </div>
+    
   </mat-tab>
+  
   <mat-tab label="My Recipes">
     My Recipes</mat-tab>
   <mat-tab label="Liked">

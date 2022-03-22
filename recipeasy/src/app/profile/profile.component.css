@@ -2,7 +2,15 @@
     margin: 20px;
     align-content: center;
 }
+.profile-info {
+    margin: 20px;
+    
+}
 
 .profile-title { 
     text-align: center;
+}
+
+.update-field {
+    margin-right: 20px;
 }
