@@ -25,6 +25,24 @@
                 </li>
             </p>
         </ol>
+
+        <div>
+          <b>Category: </b>{{data.category}}
+        </div>
+        <div>
+          <b>Cuisine: </b> {{data.cuisine}}
+        </div>
+        
+        <div fxLayout="row">
+          <div style="margin: 4px;">
+            <span *ngIf="data.vegetarian" style="margin: 2px; padding: 2px; text-align: center; border: solid 2px; border-radius: 50%;">
+              <b> V</b>
+            </span>
+            <span *ngIf="data.glutenFree" style="margin: 2px; padding: 2px; text-align: center; border: solid 2px; border-radius: 50%;">
+              <b>GF</b>
+            </span>
+          </div>
+        </div>
     </div>
   <div mat-dialog-actions>
     <button mat-raised-button color="primary" mat-dialog-close>Close</button>
