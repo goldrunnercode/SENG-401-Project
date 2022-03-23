@@ -1,50 +1,56 @@
-<h1 mat-dialog-actions mat-dialog-title>{{data.title}}
+<div *ngIf="!editMode">
+  <h1 mat-dialog-actions mat-dialog-title>{{data.title}}
     <button mat-raised-button color="accent" style="margin-left:50px" mat-dialog-close>Close</button>
-</h1>
+  </h1>
 
-<mat-dialog-content>
-    <div fxLayout="column">
-      <p>
-        authored by : {{data?.author}}
-      </p>
-      <img mat-card-image src='{{data?.image}}' alt="Photo of dish">
-        <b>Ingredients:</b>
-        <ul>
-            <p *ngFor="let ingredient of data.ingredients">
-                <li>
-                    {{ingredient}}
-                </li>
-            </p>
-        </ul>
+  <mat-dialog-content>
+      <div fxLayout="column">
+        <p>
+          authored by : {{data?.author}}
+        </p>
+        <img mat-card-image src='{{data?.image}}' alt="Photo of dish">
+          <b>Ingredients:</b>
+          <ul>
+              <p *ngFor="let ingredient of data.ingredients">
+                  <li>
+                      {{ingredient}}
+                  </li>
+              </p>
+          </ul>
 
-        <b>Instructions:</b>
-        <ol>
-            <p *ngFor="let instr of data.instructions">
-                <li>
-                    {{instr}}
-                </li>
-            </p>
-        </ol>
+          <b>Instructions:</b>
+          <ol>
+              <p *ngFor="let instr of data.instructions">
+                  <li>
+                      {{instr}}
+                  </li>
+              </p>
+          </ol>
 
-        <div>
-          <b>Category: </b>{{data.category}}
-        </div>
-        <div>
-          <b>Cuisine: </b> {{data.cuisine}}
-        </div>
-        
-        <div fxLayout="row">
-          <div style="margin: 4px;">
-            <span *ngIf="data.vegetarian" style="margin: 2px; padding: 2px; text-align: center; border: solid 2px; border-radius: 50%;">
-              <b> V</b>
-            </span>
-            <span *ngIf="data.glutenFree" style="margin: 2px; padding: 2px; text-align: center; border: solid 2px; border-radius: 50%;">
-              <b>GF</b>
-            </span>
+          <div>
+            <b>Category: </b>{{data.category}}
           </div>
-        </div>
+          <div>
+            <b>Cuisine: </b> {{data.cuisine}}
+          </div>
+          
+          <div fxLayout="row">
+            <div style="margin: 4px;">
+              <span *ngIf="data.vegetarian" style="margin: 2px; padding: 2px; text-align: center; border: solid 2px; border-radius: 50%;">
+                <b> V</b>
+              </span>
+              <span *ngIf="data.glutenFree" style="margin: 2px; padding: 2px; text-align: center; border: solid 2px; border-radius: 50%;">
+                <b>GF</b>
+              </span>
+            </div>
+          </div>
+      </div>
+    <div mat-dialog-actions *ngIf="data.author == this.authService.getProfile().email">
+      <button mat-raised-button color="primary" (click)="editMode = !editMode">Edit</button>
+      <button mat-raised-button color="accent" (click)="deleteMode = !deleteMode">Delete</button>
     </div>
-  <div mat-dialog-actions>
-    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
-  </div>
-</mat-dialog-content>
+  </mat-dialog-content>
+</div>
+<div *ngIf="editMode">
+  <app-edit-recipe [recipe]="data"></app-edit-recipe>
+</div>

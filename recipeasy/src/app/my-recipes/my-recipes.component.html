@@ -1,0 +1,208 @@
+<div *ngIf="innerWidth<450" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="1" rowHeight="500px">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=450&&innerWidth<500" class="grid-container">
+   <h1 class="mat-h1">My Recipes</h1>
+   <mat-grid-list cols="1" rowHeight="550px">
+     <mat-grid-tile *ngFor="let card of recipes">
+       <app-recipe [recipeCard]="card"></app-recipe>
+     </mat-grid-tile>
+   </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=500&&innerWidth<550" class="grid-container">
+   <h1 class="mat-h1">My Recipes</h1>
+   <mat-grid-list cols="1" rowHeight="600px">
+     <mat-grid-tile *ngFor="let card of recipes">
+       <app-recipe [recipeCard]="card"></app-recipe>
+     </mat-grid-tile>
+   </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=550&&innerWidth<600" class="grid-container">
+   <h1 class="mat-h1">My Recipes</h1>
+   <mat-grid-list cols="1" rowHeight="650">
+     <mat-grid-tile *ngFor="let card of recipes">
+       <app-recipe [recipeCard]="card"></app-recipe>
+     </mat-grid-tile>
+   </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=600&&innerWidth<650" class="grid-container">
+   <h1 class="mat-h1">My Recipes</h1>
+   <mat-grid-list cols="1" rowHeight="700">
+     <mat-grid-tile *ngFor="let card of recipes">
+       <app-recipe [recipeCard]="card"></app-recipe>
+     </mat-grid-tile>
+   </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=650&&innerWidth<700" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="450">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=700&&innerWidth<750" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="475">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=750&&innerWidth<800" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="500">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=800&&innerWidth<850" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="525">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=850&&innerWidth<900" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="550">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=900&&innerWidth<950" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="575">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=950&&innerWidth<1000" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="600">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1000&&innerWidth<1050" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="625">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1050&&innerWidth<1100" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="2" rowHeight="650">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1100&&innerWidth<1150" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="500">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1150&&innerWidth<1200" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="515">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1200&&innerWidth<1250" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="535">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1250&&innerWidth<1300" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="555">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1300&&innerWidth<1350" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="575">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1350&&innerWidth<1400" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="595">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1400&&innerWidth<1450" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="610">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1450&&innerWidth<1500" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="620">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1500&&innerWidth<1550" class="grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="630">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1550&&innerWidth<1600" class="grid-container">big-grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="650">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1600&&innerWidth<1700" class="big-grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="665">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="innerWidth>=1700" class="big-grid-container">
+    <h1 class="mat-h1">My Recipes</h1>
+    <mat-grid-list cols="3" rowHeight="700">
+      <mat-grid-tile *ngFor="let card of recipes">
+        <app-recipe [recipeCard]="card"></app-recipe>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>

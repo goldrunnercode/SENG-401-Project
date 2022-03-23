@@ -14,11 +14,15 @@ import { User } from '../app.component';
 })
 export class PostRecipeComponent implements OnInit {
   new: recipe = {
-  title: '',
-  ingredients: [],
-  instructions: [],
-  image: '',
-  author: ''
+    title: '',
+    ingredients: [],
+    instructions: [],
+    category: '',
+    cuisine: '',
+    vegetarian: false,
+    glutenFree: false,
+    image: '',
+    author: ''
   }
 
   currentUser: User = {
@@ -33,10 +37,13 @@ export class PostRecipeComponent implements OnInit {
   selectedCuisine = 'indian';
   selectedCategory = 'breakfast';
   specs!: FormGroup;
-  isLinear = false;
+  isLinear = true;
+  vegetarian = false;
+  glutenFree = false;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
   thirdFormGroup!: FormGroup;
+  duplicate = false;
   subscription!: Subscription;
 
   constructor(private _formBuilder: FormBuilder, fb: FormBuilder, private authService: AuthenticationService) {
@@ -71,17 +78,37 @@ export class PostRecipeComponent implements OnInit {
     if(this.newItem == ''){
       return false;
     }
+    this.duplicate = false;
     return true;
   }
 
   addIngredient(){
+    if(this.new.ingredients.indexOf(this.newItem) > -1){
+      this.newItem = '';
+      this.duplicate = true;
+      return;
+    }
     this.new.ingredients.push(this.newItem);
     this.newItem = '';
   }
 
   addInstruction(){
+    if(this.new.instructions.indexOf(this.newItem) > -1){
+      console.log('duplicate');
+      this.newItem = '';
+      this.duplicate = true;
+      return;
+    }
     this.new.instructions.push(this.newItem);
     this.newItem = '';
+  }
+
+  removeIngredient(ingredient: string) {
+    this.new.ingredients = this.new.ingredients.filter((item) => item !== ingredient)
+  }
+  
+  removeInstruction(instruction: string) {
+    this.new.instructions = this.new.instructions.filter((step) => step !== instruction)
   }
 
   imageChangedEvent: any = '';
@@ -92,7 +119,17 @@ export class PostRecipeComponent implements OnInit {
       this.isLinear = true;
       return false;
     }
-    this.isLinear = false;
+    else{
+      this.isLinear = false;
+      return true;
+    }
+    
+  }
+
+  allFilled(): boolean {
+    if(!this.titleInputted() || !this.imageChosen()) {
+      return false;
+    }
     return true;
   }
 
@@ -117,11 +154,20 @@ export class PostRecipeComponent implements OnInit {
     this.new.author = this.currentUser.email;
     this.new.title = this.title;
     this.new.image = this.croppedImage;
+    this.new.category = this.selectedCategory;
+    this.new.cuisine = this.selectedCuisine;
+    this.new.vegetarian = this.vegetarian;
+    this.new.glutenFree = this.glutenFree;
 
     console.log(this.new.author);
     console.log(this.new.title);
+    console.log(this.new.vegetarian);
+    console.log(this.new.glutenFree);
+    console.log(this.new.category);
+    console.log(this.new.cuisine);
     console.log(this.new.ingredients);
     console.log(this.new.instructions);
+
 
     // Send new vehicle to api
   }

@@ -1,0 +1,143 @@
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Choose your image</ng-template>
+        <div class="container">
+          <div >
+            <div >
+              <span class="hiddenFileInput">
+                <input class="choose-file-btn" type="file" (change)="fileChangeEvent($event)" />
+              </span>
+              <div style="height: 50%;">
+                <div class="text-center ">
+  
+                  <image-cropper style="width: 500px"
+                                 [imageChangedEvent]="imageChangedEvent"
+                                 [maintainAspectRatio]="true"
+                                 [aspectRatio]="4 / 4"
+                                 [resizeToWidth]="256"
+                                 format="png"
+                                 (imageCropped)="imageCropped($event)"
+                                 (imageLoaded)="imageLoaded()"
+                                 (cropperReady)="cropperReady()"
+                                 (loadImageFailed)="loadImageFailed()"></image-cropper>
+                </div>
+                <div class="text-center col-md-4">
+                  <h5>Preview</h5>
+                  <img [src]="recipe.image" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button *ngIf="imageChosen()" mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Specifications</ng-template>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input 
+            appearance="fill" 
+            matInput placeholder="Title" 
+            type="text" [(ngModel)]="recipe.title" 
+            [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Cuisine</mat-label>
+          <mat-select [(value)]="recipe.cuisine">
+            <mat-option value="Indian">Indian</mat-option>
+            <mat-option value="Mexican">Mexican</mat-option>
+            <mat-option value="Chinese">Chinese</mat-option>
+            <mat-option value="Vietnamese">Vietnamese</mat-option>
+            <mat-option value="Italian">Italian</mat-option>
+            <mat-option value="American">American</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select [(value)]="recipe.category">
+            <mat-option value="Breakfast">Breakfast</mat-option>
+            <mat-option value="Lunch">Lunch</mat-option>
+            <mat-option value="Dinner">Dinner</mat-option>
+            <mat-option value="Dessert">Dessert</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <section class="example-section">
+          <p><mat-checkbox [checked]="recipe.vegetarian" (change)="recipe.vegetarian = !recipe.vegetarian">Vegetarian</mat-checkbox></p>
+          <p><mat-checkbox [checked]="recipe.glutenFree" (change)="recipe.vegetarian = !recipe.vegetarian">Gluten Free </mat-checkbox></p>
+        </section>
+        <div>
+          <button *ngIf="titleInputted()" mat-raised-button color="primary" matStepperNext>Next</button>
+          <button style="margin-left: 5px;" mat-raised-button color="accent" matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Ingredients</ng-template>
+        <mat-card class="list-card">
+          <mat-card-header>Your Ingredients:</mat-card-header>
+          <mat-card-content>
+            <mat-selection-list #ingredients [multiple]="false">
+              <mat-list-option *ngFor="let item of recipe.ingredients" [value]="item">
+                - {{item}}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card-content>
+          <mat-card-actions>
+            <mat-form-field appearance="fill">
+              <mat-label>Add Ingredient</mat-label>
+              <input appearance="fill" matInput placeholder="Ingredient" type="text" [(ngModel)]="newItem">
+              <mat-hint *ngIf="duplicate" style="color: red; font-size: 13px">Duplicate Ingredient</mat-hint>
+            </mat-form-field>
+            <button *ngIf="listInputFilled()" mat-raised-button color="primary" (click)="addIngredient()">Add</button>
+            <button *ngIf="ingredients.selectedOptions.selected.length>0 && !duplicate" mat-raised-button color="primary" (click)="removeIngredient(ingredients.selectedOptions.selected[0]?.value)">Remove</button>
+          </mat-card-actions>
+        </mat-card>
+        <div style="margin-top: 10px;">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+          <button style="margin-left: 10px;" mat-raised-button color="accent" matStepperPrevious>Back</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Instructions</ng-template>
+        <mat-card class="list-card">
+          <mat-card-header>Instruction steps:</mat-card-header>
+          <mat-card-content>
+            <mat-selection-list dense #instructions [multiple]="false">
+              <mat-list-option *ngFor="let step of recipe.instructions" [value]="step">
+                - {{step}}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card-content>
+          <mat-card-actions>
+            <mat-form-field appearance="fill">
+              <mat-label>Add Step</mat-label>
+              <input appearance="fill" matInput placeholder="Ingredient" type="text" [(ngModel)]="newItem">
+              <mat-hint *ngIf="duplicate" style="color: red; font-size: 13px">Duplicate Instruction</mat-hint>
+            </mat-form-field>
+            <button *ngIf="listInputFilled() && !duplicate" mat-raised-button color="primary" (click)="addInstruction()">Add</button>
+            <button *ngIf="instructions.selectedOptions.selected.length>0 && !duplicate" mat-raised-button color="primary" (click)="removeInstruction(instructions.selectedOptions.selected[0]?.value)">Remove</button>
+          </mat-card-actions>
+        </mat-card>
+        <div style="margin-top: 10px">
+          <div *ngIf="!allFilled()" style="background-color:red; color:white; border-radius: 5px; text-align: center; padding: 2px; vertical-align: middle; margin-bottom: 5px">
+            <p style="font-size:15px">Must fill in all required fields to upload (Image, Title)</p>
+          </div>
+          <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+          <button *ngIf="allFilled();"
+                  style="margin-left: 5px"
+                  color="primary"
+                  mat-raised-button
+                  (click)="onSubmit()"
+                  routerLink="/">
+            Upload
+          </button>
+        </div>
+      </mat-step>
+  </mat-stepper>

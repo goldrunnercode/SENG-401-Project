@@ -39,6 +39,8 @@ import { PostRecipeComponent } from './post-recipe/post-recipe.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import { MatList, MatListModule } from '@angular/material/list';
 import { RecipesService } from './services/recipes.service';
+import { MyRecipesComponent } from './my-recipes/my-recipes.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { RecipesService } from './services/recipes.service';
     RecipeComponent,
     RecipeViewComponent,
     PostRecipeComponent,
+    MyRecipesComponent,
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +85,7 @@ import { RecipesService } from './services/recipes.service';
     MatStepperModule,
     MatListModule,
   ],
-  providers: [AuthenticationService, RecipesService,],
+  providers: [AuthenticationService, RecipesService, EditRecipeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

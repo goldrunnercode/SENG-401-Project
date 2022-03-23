@@ -1,15 +1,16 @@
-import {Component, HostListener} from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {from, Observable} from "rxjs";
-import {images} from './images';
+import {images} from '../content/images';
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  selector: 'app-my-recipes',
+  templateUrl: './my-recipes.component.html',
+  styleUrls: ['./my-recipes.component.css']
 })
-export class ContentComponent {
+export class MyRecipesComponent implements OnInit {
+
   public innerWidth: any;
   isHandset: boolean = false;
   /** Based on the screen size, switch from standard to one column per row */
@@ -22,6 +23,8 @@ export class ContentComponent {
     })
   );
 
+  constructor(private breakpointObserver: BreakpointObserver) { }
+
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.isHandsetObserver.subscribe(currentObserverValue => {
@@ -33,16 +36,8 @@ export class ContentComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
+    console.log(this.innerWidth);
   }
-
-  // colSize = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-  //   map(({ matches }) => {
-  //     if (matches) {
-  //       return 2;
-  //     }
-  //     return 1;
-  //   })
-  // );
 
   recipes = [
     {
@@ -147,7 +142,4 @@ export class ContentComponent {
 
   ];
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    
-  }
 }
