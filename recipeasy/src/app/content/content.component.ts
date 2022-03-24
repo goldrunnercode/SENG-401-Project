@@ -46,6 +46,7 @@ export class ContentComponent {
 
   recipes = [
     {
+      r_id: 0,
       title: 'Pizza',
       ingredients: ['dough','sauce', 'toppings'],
       instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
@@ -57,6 +58,7 @@ export class ContentComponent {
       author: 'user44@email.com'
     },
     {
+      r_id: 1,
       title: 'Sauce',
       ingredients: ['tomato','pepper', 'oil'],
       instructions : ['cut up ingredients','blend'],
@@ -68,6 +70,7 @@ export class ContentComponent {
       author: 'user20@email.com'
     },
     {
+      r_id: 2,
       title: 'Hambuger',
       ingredients: ['meat','buns', 'ketchup'],
       instructions :   ['smash meat','cook', 'put on toppings'],
@@ -79,6 +82,7 @@ export class ContentComponent {
       author: 'user49@email.com'
     },
     {
+      r_id: 3,
       title: 'Pizza',
       ingredients: ['dough','sauce', 'toppings'],
       instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
@@ -90,6 +94,7 @@ export class ContentComponent {
       author: 'user44@email.com'
     },
     {
+      r_id: 4,
       title: 'Sauce',
       ingredients: ['tomato','pepper', 'oil'],
       instructions : ['cut up ingredients','blend'],
@@ -101,6 +106,7 @@ export class ContentComponent {
       author: 'user20@email.com'
     },
     {
+      r_id: 5,
       title: 'Hambuger',
       ingredients: ['meat','buns', 'ketchup'],
       instructions :   ['smash meat','cook', 'put on toppings'],
@@ -112,6 +118,7 @@ export class ContentComponent {
       author: 'user49@email.com'
     },
     {
+      r_id: 6,
       title: 'Pizza',
       ingredients: ['dough','sauce', 'toppings'],
       instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
@@ -123,6 +130,7 @@ export class ContentComponent {
       author: 'user44@email.com'
     },
     {
+      r_id: 7,
       title: 'Sauce',
       ingredients: ['tomato','pepper', 'oil'],
       instructions : ['cut up ingredients','blend'],
@@ -134,6 +142,7 @@ export class ContentComponent {
       author: 'user20@email.com'
     },
     {
+      r_id: 8,
       title: 'Hambuger',
       ingredients: ['meat','buns', 'ketchup'],
       instructions :   ['smash meat','cook', 'put on toppings'],

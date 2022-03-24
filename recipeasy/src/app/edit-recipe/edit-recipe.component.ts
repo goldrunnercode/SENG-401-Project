@@ -14,6 +14,7 @@ import { RecipesService } from '../services/recipes.service';
 })
 export class EditRecipeComponent implements OnInit {
   @Input() recipe: recipe = {
+    r_id: undefined,
     title: '',
     ingredients: [],
     instructions: [],

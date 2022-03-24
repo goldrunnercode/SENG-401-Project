@@ -14,6 +14,7 @@ import { User } from '../app.component';
 })
 export class PostRecipeComponent implements OnInit {
   new: recipe = {
+    r_id: undefined,
     title: '',
     ingredients: [],
     instructions: [],

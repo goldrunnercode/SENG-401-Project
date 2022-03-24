@@ -1,4 +1,4 @@
-<div *ngIf="!editMode">
+<div *ngIf="!editMode && !deleteMode">
   <h1 mat-dialog-actions mat-dialog-title>{{data.title}}
     <button mat-raised-button color="accent" style="margin-left:50px" mat-dialog-close>Close</button>
   </h1>
@@ -52,5 +52,19 @@
   </mat-dialog-content>
 </div>
 <div *ngIf="editMode">
-  <app-edit-recipe [recipe]="data"></app-edit-recipe>
+  <div>
+    <button mat-raised-button color="accent" (click)="editMode = !editMode">Cancel</button>
+  </div>
+  <div>
+    <app-edit-recipe [recipe]="data"></app-edit-recipe>
+  </div>
+</div>
+<div *ngIf="deleteMode">
+  <h1>Delete recipe?</h1>
+  <br/>
+  <p>Are you sure you want to delete this recipe?</p>
+  <div>
+    <button mat-raised-button color="accent" (click)=deleteRecipe()>Yes</button>
+    <button style="margin-left: 10px" mat-raised-button color="primary" (click)="deleteMode = !deleteMode">No</button>
+  </div>
 </div>

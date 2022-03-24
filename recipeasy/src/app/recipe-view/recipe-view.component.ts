@@ -29,4 +29,10 @@ export class RecipeViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  deleteRecipe(): void {
+    // delete resipe
+
+    
+  }
+
 }

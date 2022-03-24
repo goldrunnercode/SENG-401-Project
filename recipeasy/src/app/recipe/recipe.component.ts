@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RecipeViewComponent } from '../recipe-view/recipe-view.component';
 
 export interface recipe{
+  r_id?: number;
   title: string,
   ingredients: string[],
   instructions: string[],
