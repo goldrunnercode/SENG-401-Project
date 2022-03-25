@@ -1,7 +1,7 @@
--- DROP DATABASE RECIPEASY_PERSON;
--- DROP DATABASE RECIPEASY_MID;
--- DROP DATABASE RECIPEASY_RECIPE_WRITE;
--- DROP DATABASE RECIPEASY_RECIPE_READ;
+DROP DATABASE RECIPEASY_PERSON;
+DROP DATABASE RECIPEASY_MID;
+DROP DATABASE RECIPEASY_RECIPE_WRITE;
+DROP DATABASE RECIPEASY_RECIPE_READ;
 
 USE RECIPEASY_PERSON;
 INSERT INTO Person (isVisible, email, password, fname, lname, isAdmin) VALUES 
@@ -43,13 +43,6 @@ INSERT INTO Posts (p_id, r_id) VALUES
 
 USE RECIPEASY_RECIPE_WRITE;
 UPDATE Max_R_Id SET max_r_id = 7 WHERE max_r_id = 1;
-
-SELECT r.r_id, r.description, r.name as title, r.isVisible, ri.ingredient, re.instruction
-FROM Recipe as r,  Recipe_Ingredients as ri, Recipe_Instructions as re
-WHERE r.isVisible = 1 AND r.r_id = ri.r_id AND r.r_id = re.r_id;
-
-SELECT * FROM Recipe;
-
 
 /*
 Copy - paste arguments you can use inside of postman in order to test the functionality 

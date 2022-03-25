@@ -49,6 +49,43 @@ function replaceApostrophe(input) {
     return input.replace(re, "\\\'")
 }
 
+function updateRecipe(results, i) {
+    recipe_read_db.query('SELECT * FROM Recipe WHERE r_id = ' + results[i].r_id, function(err2, results2) {
+        if(err2) throw(err2)
+        if(results2 != null && results2.length > 0) {
+            recipe_read_db.query('UPDATE Recipe SET isVisible = ' + results[i].isVisible + ', name = \'' + replaceApostrophe(results[i].name) + 
+            '\', category = \'' + replaceApostrophe(results[i].category) + '\', cuisine = \'' + replaceApostrophe(results[i].cuisine) + 
+            '\', vegetarian = ' + results[i].vegetarian + ', glutenFree = ' + results[i].glutenFree + 
+            ', image = \'' + replaceApostrophe(results[i].image) + '\', author = \'' + replaceApostrophe(results[i].author) + 
+            '\' WHERE r_id = ' + results[i].r_id);
+        } else {
+            recipe_read_db.query('INSERT INTO Recipe (r_id, name, category, cuisine, vegetarian, glutenFree, image, author, isVisible) VALUES (' +
+            results[i].r_id + ',\'' + replaceApostrophe(results[i].name) + '\',\'' + replaceApostrophe(results[i].category) +
+            '\',\'' + replaceApostrophe(results[i].cuisine) + '\',' +  results[i].vegetarian + ',' + results[i].glutenFree + ',\'' + replaceApostrophe(results[i].image) + '\',\'' + 
+            replaceApostrophe(results[i].author) + '\',' + results[i].isVisible + ')');
+        }
+    })
+}
+
+function updateIngredient(results, i) {
+    recipe_read_db.query('SELECT * FROM Recipe_Ingredients WHERE r_id = ' + results[i].r_id + ' AND ingredient = \'' + results[i].ingredient + '\'', function(err2, results2) {
+        if(err2) throw(err2)
+        if(results2 == null || results2.length == 0) {
+            recipe_read_db.query('INSERT INTO Recipe_Ingredients (r_id, ingredient) VALUES (' + results[i].r_id + ',\'' + results[i].ingredient + '\')')
+        } 
+    })
+}
+
+function updateInstructions(results, i) {
+    recipe_read_db.query('SELECT * FROM Recipe_Instructions WHERE r_id = ' + results[i].r_id + ' AND instruction = \'' + results[i].instruction + '\'', function(err2, results2) {
+        if(err2) throw(err2)
+        if(results2 == null || results2.length == 0) {
+            recipe_read_db.query('INSERT INTO Recipe_Instructions (r_id, instruction) VALUES (' + results[i].r_id + ',\'' + results[i].instruction + '\')')
+        } 
+    })
+}
+
+
 // main body of the program
 const requestListener = function (req, res) {
 
@@ -378,12 +415,10 @@ const requestListener = function (req, res) {
 
                             if (valid) {
                                 try {
-                                    console.log(name);
                                     recipe_read_db.query('SELECT r_id FROM Recipe WHERE name = \'' + replaceApostrophe(name) + '\' AND author = \'' + replaceApostrophe(author) + '\' AND isVisible = 1', function(err, results) {
                                         if (err) throw err;
                                         if (results != null && results.length > 0) {
                                             r_id = results[0].r_id;
-                                            console.log(r_id);
                                         
                                             // Create Recipe
                                             recipe_write_db.query('INSERT INTO Recipe (r_id, name, category, cuisine, vegetarian, glutenFree, image, author, isVisible) VALUES (' +
@@ -763,6 +798,58 @@ const requestListener = function (req, res) {
                         res.end();
                         break;
                 }
+            });
+            break;
+        case "update":
+            req.on('end', () => {
+                try {
+                    recipe_write_db.query('SELECT * FROM Recipe', function(err, results) {
+                        if(err) throw err;
+                        if(results != null && results.length > 0) {
+                            for(i = 0; i<results.length; i++) {
+                                updateRecipe(results, i)
+                            }
+                        }
+                    });
+                } catch(error) {}
+                res.end();
+            });
+            break;
+        case "update2":
+            req.on('end', () => {
+                try {
+                    recipe_write_db.query('SELECT * FROM Recipe_Ingredients', function(err, results) {
+                        if(err) throw err;
+                        if(results != null && results.length > 0) {
+                            for(i = 0; i<results.length; i++) {
+                                updateIngredient(results, i);
+                            }
+                        }
+                    });
+
+                    recipe_write_db.query('SELECT * FROM Recipe_Instructions', function(err, results) {
+                        if(err) throw err;
+                        if(results != null && results.length > 0) {
+                            for(i = 0; i<results.length; i++) {
+                                updateInstructions(results, i);
+                            }
+                        }
+                    });
+                } catch(error) {}
+                res.end();
+            });
+            break;
+        case "update3":
+            req.on('end', () => {
+                try {
+                    recipe_write_db.query('DELETE FROM Recipe_Ingredients WHERE r_id > 0');
+
+                    recipe_write_db.query('DELETE FROM Recipe_Instructions WHERE r_id > 0');
+
+                    recipe_write_db.query('DELETE FROM Recipe WHERE r_id > 0');
+
+                } catch(error) {}
+                res.end();
             });
             break;
         default:
