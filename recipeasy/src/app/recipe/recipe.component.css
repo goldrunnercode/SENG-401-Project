@@ -4,7 +4,7 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   min-width: 100px
 }
 
