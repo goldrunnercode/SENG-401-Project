@@ -41,11 +41,16 @@ export class SignInComponent implements OnInit {
           console.log(this.email)
           console.log(this.password)
 
+
+          // have to check if the user is admin
+
+
           const currentUser = {
             email: this.email,
             password: this.password,
             first_name: 'Eli',
-            last_name: 'St. James'
+            last_name: 'St. James',
+            isAdmin: false // change to whatever the service returns for the isAdmin part
           }
 
           //verify user

@@ -16,7 +16,8 @@ export class AuthenticationService {
     email: '',
     password: '',
     first_name: '',
-    last_name: ''
+    last_name: '',
+    isAdmin: true  // true if the user is admin
   };
 
   constructor(private http: HttpClient) { }

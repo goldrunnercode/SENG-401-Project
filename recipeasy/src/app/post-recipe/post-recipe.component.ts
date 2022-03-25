@@ -30,7 +30,8 @@ export class PostRecipeComponent implements OnInit {
     email: '',
     password: '',
     first_name: '',
-    last_name: ''
+    last_name: '',
+    isAdmin: false
   }
 
   newItem: string = '';
