@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS Recipe (
     cuisine varchar(255),
     vegetarian bool NOT NULL DEFAULT 0,
     glutenFree bool NOT NULL DEFAULT 0,
-    image varchar(6666),
+    image text,
     author varchar(510),
     
     -- dead values, front end no longer needs them
@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS Recipe (
     cuisine varchar(255),
     vegetarian bool NOT NULL DEFAULT 0,
     glutenFree bool NOT NULL DEFAULT 0,
-    image varchar(6666),
-	author varchar(510),
+    image text,
+	author varchar(255),
 
     -- dead values, front end no longer needs them
     date_posted char(10),
