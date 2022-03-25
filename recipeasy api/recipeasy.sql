@@ -5,8 +5,8 @@ SENG401 W2022 term project for Recipeasy
 
 Created February 25, 2022 by Jett Penner
 
-Current Version: 1.1
-Version Date: February 28, 2022
+Current Version: 1.0
+Version Date: February 25, 2022
 Version Author: Jett Penner
 
 */
@@ -20,8 +20,7 @@ CREATE TABLE IF NOT EXISTS Person (
     isVisible bool NOT NULL DEFAULT 1,
 	email varchar(255) UNIQUE NOT NULL,
 	password varchar(255) UNIQUE NOT NULL,
-    fname varchar(255),
-    lname varchar(255),
+    name varchar(255) UNIQUE NOT NULL,
     isAdmin bool NOT NULL DEFAULT 0,
     PRIMARY KEY(p_id)
 );
@@ -48,50 +47,73 @@ USE RECIPEASY_RECIPE_READ;
 
 CREATE TABLE IF NOT EXISTS Recipe (
 	r_id int NOT NULL AUTO_INCREMENT,
-    description varchar(1000),
+	isVisible bool NOT NULL DEFAULT 1,
+
     name varchar(255),
-    likes int NOT NULL DEFAULT 0,
-    isVisible bool NOT NULL DEFAULT 1,
+    instructions varchar(6666),
+    category varchar(255),
+    cuisine varchar(255),
+    vegetarian bool NOT NULL DEFAULT 0,
+    glutenFree bool NOT NULL DEFAULT 0,
+    image varchar(6666),
+    author varchar(510),
+    
+    -- dead values, front end no longer needs them
     date_posted char(10),
+	likes int DEFAULT 0,
+    description varchar(1000),
+
     PRIMARY KEY (r_id)
  );
  
- CREATE TABLE IF NOT EXISTS Recipe_Categories (
-	r_id int NOT NULL,
-	category varchar(255),
-    FOREIGN KEY (r_id) REFERENCES Recipe(r_id)
- );
- 
- CREATE TABLE IF NOT EXISTS Recipe_Ingredients (
+CREATE TABLE IF NOT EXISTS Recipe_Ingredients (
 	r_id int NOT NULL,
 	ingredient varchar(255),
     FOREIGN KEY (r_id) REFERENCES Recipe(r_id)
- );
+);
+
+CREATE TABLE IF NOT EXISTS Recipe_Instructions (
+	r_id int NOT NULL,
+	instruction varchar(255),
+    FOREIGN KEY (r_id) REFERENCES Recipe(r_id)
+);
  
  -- Create the recipe write database --
 CREATE DATABASE IF NOT EXISTS RECIPEASY_RECIPE_WRITE;
 USE RECIPEASY_RECIPE_WRITE;
 
 CREATE TABLE IF NOT EXISTS Recipe (
-	local_id int NOT NULL AUTO_INCREMENT,
-	r_id int NOT NULL,
-    description varchar(1000),
+	r_id int NOT NULL AUTO_INCREMENT,
+	isVisible bool NOT NULL DEFAULT 1,
+
     name varchar(255),
-    likes int NOT NULL DEFAULT 0,
-    isVisible bool NOT NULL DEFAULT 1,
+    instructions varchar(6666),
+    category varchar(255),
+    cuisine varchar(255),
+    vegetarian bool NOT NULL DEFAULT 0,
+    glutenFree bool NOT NULL DEFAULT 0,
+    image varchar(6666),
+	author varchar(510),
+
+    -- dead values, front end no longer needs them
     date_posted char(10),
-    PRIMARY KEY (local_id)
- );
- 
- CREATE TABLE IF NOT EXISTS Recipe_Categories (
-	r_id int NOT NULL,
-	category varchar(255)
+	likes int DEFAULT 0,
+    description varchar(1000),
+
+    PRIMARY KEY (r_id)
+
  );
  
  CREATE TABLE IF NOT EXISTS Recipe_Ingredients (
 	r_id int NOT NULL,
 	ingredient varchar(255)
  );
+ 
+ CREATE TABLE IF NOT EXISTS Recipe_Instructions (
+	r_id int NOT NULL,
+	instruction varchar(255),
+    FOREIGN KEY (r_id) REFERENCES Recipe(r_id)
+);
  
  CREATE TABLE IF NOT EXISTS Max_R_Id (
 	max_r_id int NOT NULL DEFAULT 0
