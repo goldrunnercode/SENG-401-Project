@@ -39,6 +39,7 @@ import { PostRecipeComponent } from './post-recipe/post-recipe.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import { MatList, MatListModule } from '@angular/material/list';
 import { RecipesService } from './services/recipes.service';
+import { UsersService } from './services/users.service';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
@@ -85,7 +86,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     MatStepperModule,
     MatListModule,
   ],
-  providers: [AuthenticationService, RecipesService, EditRecipeComponent],
+  providers: [AuthenticationService, RecipesService,UsersService, EditRecipeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
