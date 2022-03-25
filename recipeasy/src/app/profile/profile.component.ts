@@ -15,13 +15,15 @@ export class ProfileComponent implements OnInit {
     email: '',
     password: '',
     first_name: '',
-    last_name: ''
+    last_name: '',
+    isAdmin: false
   };
   user: User = {
     email: '',
     password: '',
     first_name: '',
-    last_name: ''
+    last_name: '',
+    isAdmin: false
   };
 
   constructor( private authService: AuthenticationService) {

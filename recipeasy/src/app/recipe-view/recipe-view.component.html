@@ -45,7 +45,7 @@
             </div>
           </div>
       </div>
-    <div mat-dialog-actions *ngIf="data.author == this.authService.getProfile().email">
+    <div mat-dialog-actions *ngIf="data.author == this.authService.getProfile().email || this.authService.getProfile().isAdmin">
       <button mat-raised-button color="primary" (click)="editMode = !editMode">Edit</button>
       <button mat-raised-button color="accent" (click)="deleteMode = !deleteMode">Delete</button>
     </div>

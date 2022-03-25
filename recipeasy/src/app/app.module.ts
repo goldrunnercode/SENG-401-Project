@@ -42,6 +42,8 @@ import { RecipesService } from './services/recipes.service';
 import { UsersService } from './services/users.service';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import { AllUsersComponent } from './all-users/all-users.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     RecipeViewComponent,
     PostRecipeComponent,
     MyRecipesComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    AllUsersComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { SignInDialogComponent } from '../sign-in-dialog/sign-in-dialog.component';
@@ -20,7 +21,7 @@ export class SignInComponent implements OnInit {
   //subscription!: Subscription;
 
 
-  constructor(public dialog: MatDialog, public app: MenuBarComponent){
+  constructor(public dialog: MatDialog, public app: MenuBarComponent, private router: Router) {
 
   }
 
@@ -40,11 +41,16 @@ export class SignInComponent implements OnInit {
           console.log(this.email)
           console.log(this.password)
 
+
+          // have to check if the user is admin
+
+
           const currentUser = {
             email: this.email,
             password: this.password,
             first_name: 'Eli',
-            last_name: 'St. James'
+            last_name: 'St. James',
+            isAdmin: false // change to whatever the service returns for the isAdmin part
           }
 
           //verify user
@@ -55,6 +61,7 @@ export class SignInComponent implements OnInit {
           //reset form
           this.email = "";
           this.password = "";
+          this.router.navigate(['/'])
         }
         else{
           alert("Please fill in all fields")

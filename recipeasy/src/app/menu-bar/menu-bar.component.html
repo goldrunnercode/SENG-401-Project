@@ -7,6 +7,7 @@
   </div>
 
   <span class="spacer"></span>
+
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
     <mat-icon aria-label="My Account">account_box</mat-icon>
   </button>
@@ -18,5 +19,6 @@
     <button *ngIf="signed_in"  mat-menu-item routerLink="/post-recipe"><span>Post</span></button>
     <button *ngIf="signed_in"  mat-menu-item (click)="onSignOut()" routerLink="/"><span>Sign out</span></button>
     <button *ngIf="!signed_in" mat-menu-item routerLink="/create-account"><span>Create Account</span></button>
+    <button *ngIf="signed_in && this.authService.getProfile().isAdmin" mat-menu-item routerLink="/all-users"><span>All Users</span></button>
   </mat-menu>
 </mat-toolbar>

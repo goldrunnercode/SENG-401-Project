@@ -13,12 +13,13 @@ export class MenuBarComponent implements OnInit {
     email: '',
     password: '',
     first_name: '',
-    last_name: ''
+    last_name: '',
+    isAdmin: false
   };
   signed_in = false;
   subscription!: Subscription;
 
-  constructor(private authService: AuthenticationService) {
+  constructor(public authService: AuthenticationService) {
 
   }
 
