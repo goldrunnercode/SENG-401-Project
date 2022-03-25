@@ -19,8 +19,9 @@ CREATE TABLE IF NOT EXISTS Person (
 	p_id int NOT NULL AUTO_INCREMENT,
     isVisible bool NOT NULL DEFAULT 1,
 	email varchar(255) UNIQUE NOT NULL,
-	password varchar(255) UNIQUE NOT NULL,
-    name varchar(255) UNIQUE NOT NULL,
+	password varchar(255) NOT NULL,
+    fname varchar(255) NOT NULL,
+    lname varchar(255) NOT NULL,
     isAdmin bool NOT NULL DEFAULT 0,
     PRIMARY KEY(p_id)
 );
@@ -50,7 +51,6 @@ CREATE TABLE IF NOT EXISTS Recipe (
 	isVisible bool NOT NULL DEFAULT 1,
 
     name varchar(255),
-    instructions varchar(6666),
     category varchar(255),
     cuisine varchar(255),
     vegetarian bool NOT NULL DEFAULT 0,
@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS Recipe (
 	isVisible bool NOT NULL DEFAULT 1,
 
     name varchar(255),
-    instructions varchar(6666),
     category varchar(255),
     cuisine varchar(255),
     vegetarian bool NOT NULL DEFAULT 0,

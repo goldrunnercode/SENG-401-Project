@@ -90,9 +90,9 @@ const requestListener = function (req, res) {
                         */
                         try {
                             recipe_read_db.query(
-                                'SELECT r.name as title, r.category as category, r.cuisine as cuisine, ' +
-                                'r.vegetarian as vegetarian, r.glutenFree as glutenFree, r.image as image, ri.ingredient,  re.instruction ' +
-                                'FROM Recipe as r, Recipe_Ingredients as ri, Recipe_Instructions as re' +
+                                'SELECT r.r_id, r.name as title, r.category, r.cuisine, ' +
+                                'r.vegetarian, r.glutenFree, r.image, r.author, ri.ingredient,  re.instruction ' +
+                                'FROM Recipe as r, Recipe_Ingredients as ri, Recipe_Instructions as re ' +
                                 'WHERE r.isVisible = 1 AND r.r_id = ri.r_id AND r.r_id = re.r_id',
                                 function (err, results) {
 
@@ -136,7 +136,7 @@ const requestListener = function (req, res) {
                                                     //combine instructions
                                                     instruction_found = false;
                                                     for (k = 0; k < results[i].instructions.length; k++) {
-                                                        if (results[i].ingredients[k] == results[j].ingredient) instruction_found = true;
+                                                        if (results[i].instructions[k] == results[j].instruction) instruction_found = true;
                                                     }
                                                     if (!instruction_found) results[i].instructions.push(results[j].instruction);
                                                 }
@@ -331,10 +331,7 @@ const requestListener = function (req, res) {
                                 except for id's, because they cannot be 0.
                             */
 
-                            isVisible = obj.isVisible;
-                            try {
-                                if (isVisible);
-                            } catch (error) { valid = false; }
+                            let isVisible = 1;
 
                             let ingredients;
                             if (obj.ingredients && obj.ingredients.length > 0) ingredients = obj.ingredients;
@@ -381,10 +378,12 @@ const requestListener = function (req, res) {
 
                             if (valid) {
                                 try {
-                                    recipe_read_db.query('SELECT r_id FROM Recipe WHERE name = \'' + replaceApostrophe(name) + '\' AND author = \'' + replaceApostrophe(author) + '\'', function(err, results) {
+                                    console.log(name);
+                                    recipe_read_db.query('SELECT r_id FROM Recipe WHERE name = \'' + replaceApostrophe(name) + '\' AND author = \'' + replaceApostrophe(author) + '\' AND isVisible = 1', function(err, results) {
                                         if (err) throw err;
                                         if (results != null && results.length > 0) {
-                                            r_id = results[0].max_r_id;
+                                            r_id = results[0].r_id;
+                                            console.log(r_id);
                                         
                                             // Create Recipe
                                             recipe_write_db.query('INSERT INTO Recipe (r_id, name, category, cuisine, vegetarian, glutenFree, image, author, isVisible) VALUES (' +
@@ -445,9 +444,9 @@ const requestListener = function (req, res) {
                                             if (results != null && results.length > 0) {
 
                                                 // Convert all the r_ids into a query to get the full recipe
-                                                recipe_query = 'SELECT r.r_id, r.name, r.instructions, r.category, r.cuisine, r.vegetarian, r.glutenFree, r.image, r.author, r.isVisible, ri.ingredient ' +
-                                                    'FROM Recipe as r, Recipe_Ingredients as ri ' +
-                                                    'WHERE r.isVisible = 1 AND r.r_id = ri.r_id AND ('
+                                                recipe_query = 'SELECT r.name, r.instructions, r.category, r.cuisine, r.vegetarian, r.glutenFree, r.image, r.author, ri.ingredient ' +
+                                                    'FROM Recipe as r, Recipe_Ingredients as ri, Recipe_Instructions as re ' +
+                                                    'WHERE r.isVisible = 1 AND r.r_id = ri.r_id r.r_id = re.r_id AND ('
                                                 for (i = 0; i < results.length; i++) {
                                                     if (i != 0) recipe_query += ' OR ';
                                                     recipe_query += 'r.r_id = ' + results[i].r_id;
@@ -476,6 +475,8 @@ const requestListener = function (req, res) {
                                                             results2[i].ingredients = [results2[i].ingredient];
                                                             delete results2[i].ingredient;
 
+                                                            results2[i].instructions = [results2[i].instruction];
+                                                            delete results2[i].instruction;
                                                             // add to return result
                                                             return_results.push(results2[i]);
 
@@ -496,6 +497,12 @@ const requestListener = function (req, res) {
                                                                         if (results2[i].ingredients[k] == results2[j].ingredient) ingredient_found = true;
                                                                     }
                                                                     if (!ingredient_found) results2[i].ingredients.push(results2[j].ingredient);
+
+                                                                    instruction_found = false;
+                                                                    for (k = 0; k < results2[i].instructions.length; k++) {
+                                                                        if (results2[i].instructions[k] == results2[j].instruction) instruction_found = true;
+                                                                    }
+                                                                    if (!instruction_found) results2[i].instructions.push(results2[j].instruction);
                                                                 }
                                                             }
                                                         }
@@ -742,10 +749,7 @@ const requestListener = function (req, res) {
 
                             // create default values for some attributes if they are not there
 
-                            isVisible = obj.isVisible;
-                            try {
-                                if (isVisible);
-                            } catch (error) { valid = false; }
+                            let isVisible = 1;
 
                             if (valid) {
                                 try {
