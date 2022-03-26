@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "angular": "^1.8.2"
+    "angular": "^1.8.2",
+    "mysql": "^2.18.1"
   }
 }
