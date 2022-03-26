@@ -2,13 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {AppComponent} from '../app.component';
+import { recipe } from '../recipe/recipe.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
-  private apiUrl = 'http://localhost:8008/recipe';
+  private apiUrl = 'http://localhost:8008/recipe/';
 
 
-  constructor(private http: HttpClient) {}
+  allRecipes: recipe[] = [];
+
+
+  constructor(private http: HttpClient) {
+
+  }
+
+  getRecipes(): Observable<recipe[]> {
+    return this.http.get<recipe[]>(this.apiUrl);
+  }
+
+
 }
