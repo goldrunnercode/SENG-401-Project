@@ -628,10 +628,10 @@ const requestListener = function (req, res) {
                 let obj;
                 let isJson = false;
 
-                switch (url_pieces[2]) {
+                switch (req.method) {
                     case "GET":         // Get All Users
                         try {
-                            recipe_read_db.query(
+                            person_db.query(
                                 'SELECT p.email, p.password ' +
                                 'FROM person as p ' +
                                 'WHERE p.isVisible = 1',
