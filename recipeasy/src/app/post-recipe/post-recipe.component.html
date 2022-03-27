@@ -1,5 +1,6 @@
 
 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+<!--
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Choose your image</ng-template>
@@ -23,11 +24,11 @@
                                (cropperReady)="cropperReady()"
                                (loadImageFailed)="loadImageFailed()"></image-cropper>
               </div>
-              <!--
+              
               <div class="text-center col-md-4">
                 <h5>Preview</h5>
                 <img [src]="croppedImage" />
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
@@ -37,6 +38,7 @@
       </div>
     </form>
   </mat-step>
+-->
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Specifications</ng-template>

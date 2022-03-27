@@ -30,15 +30,15 @@ export class RecipesService {
   getFilters(): Filter { return this.recipeFilter; }
 
   updateDatabase1(): Observable<any> {
-    return this.http.get('http://localhost:8008/update');
+    return this.http.delete('http://localhost:8008/update');
   }
 
   updateDatabase2(): Observable<any> {
-    return this.http.get('http://localhost:8008/update2');
+    return this.http.delete('http://localhost:8008/update2');
   }
 
   updateDatabase3(): Observable<any> {
-    return this.http.get('http://localhost:8008/update3');
+    return this.http.delete('http://localhost:8008/update3');
   }
 
   setFilter(newFilter: Filter){this.recipeFilter = newFilter;}

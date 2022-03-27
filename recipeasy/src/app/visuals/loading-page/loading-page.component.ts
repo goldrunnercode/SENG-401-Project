@@ -14,7 +14,7 @@ export class LoadingPageComponent implements OnInit {
   ngOnInit(): void {
     
     this.recipesService.updateDatabase1().subscribe(() => {console.log('update 1 done')});
-    setTimeout(() => {}, 500)
+    setTimeout(() => {}, 1000)
     this.recipesService.updateDatabase2().subscribe(() => {console.log('update 2 done')});
     setTimeout(() => {}, 500)
     this.recipesService.updateDatabase3().subscribe(() => {console.log('update 3 done')});
