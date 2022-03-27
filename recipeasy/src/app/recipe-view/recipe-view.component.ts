@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ContentComponent } from '../content/content.component';
 import { AuthenticationService } from '../services/authentication.service';
 
 interface recipeData{
+  r_id?: number,
   title: string,
   ingredients: string[],
   instructions: string[],
@@ -24,14 +26,15 @@ export class RecipeViewComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: recipeData,
-    public authService: AuthenticationService) { }
+    public authService: AuthenticationService, private content: ContentComponent) { }
 
   ngOnInit(): void {
   }
 
-  deleteRecipe(): void {
+  deleteRecipe(id?: number): void {
     // delete resipe
 
+    this.content.deleteRecipe(id)
     
   }
 

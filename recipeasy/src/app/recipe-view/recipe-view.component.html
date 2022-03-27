@@ -60,11 +60,11 @@
   </div>
 </div>
 <div *ngIf="deleteMode">
-  <h1>Delete recipe?</h1>
+  <h1>Delete recipe? {{data?.r_id}}</h1>
   <br/>
   <p>Are you sure you want to delete this recipe?</p>
   <div>
-    <button mat-raised-button color="accent" (click)=deleteRecipe()>Yes</button>
+    <button mat-raised-button color="accent" (click)="deleteRecipe(data?.r_id)" mat-dialog-close>Yes</button>
     <button style="margin-left: 10px" mat-raised-button color="primary" (click)="deleteMode = !deleteMode">No</button>
   </div>
 </div>

@@ -61,6 +61,13 @@ export class ContentComponent {
     this.router.navigate(['/loading-page'])
   }
 
+  deleteRecipe(id?:number) {
+    this.recipesService.deleteRecipe(id).subscribe(() => {});
+    console.log("vehicle deleted");
+    console.log(this.recipes);
+    this.router.navigate(['/loading-page'])
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;

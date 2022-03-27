@@ -51,4 +51,8 @@ export class RecipesService {
     return this.http.post<recipe>(this.apiUrl, JSON.stringify(recipe));
   }
 
+  deleteRecipe(id?:number): Observable<recipe>{
+    return this.http.delete<recipe>(this.apiUrl+id);
+  }
+
 }
