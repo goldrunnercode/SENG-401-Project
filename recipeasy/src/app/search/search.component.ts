@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Filter } from '../Filter';
+import { RecipesService } from '../services/recipes.service';
 
 @Component({
   selector: 'app-search',
@@ -10,13 +13,14 @@ export class SearchComponent implements OnInit {
   isOpen = false;
   recipeFilter = [];
   categories = ['Breakfast', 'Lunch', 'Dinner', 'Dessert'];
-  cuisines = ['Indian', 'Mexican', 'Chinese', 'Vietnamese', 'Italian', 'American'];
+  cuisines = ['Indian', 'Mexican', 'Chinese', 'Vietnamese', 'Italian', 'American', 'Canadian'];
   categoryFilter: string[] = [];
   cuisineFilter: string[] = [];
   vegetarian: boolean = false;
   glutenFree: boolean = false;
+  name: string = '';
 
-  constructor() { }
+  constructor(private recipesService: RecipesService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -47,13 +51,17 @@ export class SearchComponent implements OnInit {
   }
 
   filterRecipes() {
-    let filter = {
+    let filter:Filter = {
       categories: this.categoryFilter,
-      cuisine: this.cuisineFilter,
+      cuisines: this.cuisineFilter,
       veg: this.vegetarian,
-      gluten: this.glutenFree
+      gluten: this.glutenFree,
+      name: this.name
     }
     console.log("Recipe filters: ", filter);
+    this.isOpen = false;
+    this.recipesService.setFilter(filter);
+    this.router.navigate(['/loading-page']);
   }
 
   clearFilters() {
@@ -62,6 +70,6 @@ export class SearchComponent implements OnInit {
     this.cuisineFilter = [];
     this.vegetarian = false;
     this.glutenFree = false;
-    this.isOpen = false;
+    this.name = '';
   }
 }
