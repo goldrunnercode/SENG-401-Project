@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../app.component';
-
+import { UsersService } from '../services/users.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -9,13 +10,16 @@ import { User } from '../app.component';
 export class UserComponent implements OnInit {
   @Input() userCard: User | undefined;
 
-  constructor() { }
+  constructor(
+    private userService : UsersService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
 
-  banUser(): void{
-
+  banUser(id: any) {
+    this.userService.deleteUser(id).subscribe(() => {});
+    this.router.navigate(['/loading-page']);
   }
-
 }
