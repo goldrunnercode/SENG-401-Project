@@ -663,8 +663,8 @@ const requestListener = function (req, res) {
                                                 if(err2) throw err2;
                                                 if(results2 != null && results2.length > 0 {
                                                    recipe_write_db.query('INSERT INTO Recipe (r_id, fname, lname, instructions, category, cuisine, vegetarian, glutenFree, image, author, isVisible, date_posted, likes, description) VALUES (' +
-                                                        results[0].r_id + ',\'' + results[0].fname + '\',\'' + results[0].lname + '\',\'' + results[0].instructions + '\',\'' + results[0].category + '\',\'' + results[0].cuisine + '\',' + results[0].vegetarian + ',' +
-                                                        results[0].glutenFree + ',\'' + results[0].image + '\',\'' + results[0].author + '\',0,\'' + results[0].date_posted + '\',' + results[0].likes + ',\'' + results[0].description + '\')');
+                                                        results2[0].r_id + ',\'' + results2[0].fname + '\',\'' + results2[0].lname + '\',\'' + results2[0].instructions + '\',\'' + results2[0].category + '\',\'' + results2[0].cuisine + '\',' + results2[0].vegetarian + ',' +
+                                                        results2[0].glutenFree + ',\'' + results2[0].image + '\',\'' + results2[0].author + '\',0,\'' + results2[0].date_posted + '\',' + results2[0].likes + ',\'' + results2[0].description + '\')');
                                             })
                                         }
                                     }
