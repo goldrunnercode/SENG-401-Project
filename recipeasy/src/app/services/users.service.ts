@@ -19,4 +19,15 @@ export class UsersService {
   deleteUser(id : number) {
     return this.http.delete<User>(this.apiUrl + '/' + id);
   }
+
+  createUser(user: User) {
+    let newUser = {
+      email: user.email,
+      password: user.password,
+      fname: user.fname,
+      lname: user.lname,
+      isAdmin: user.isAdmin
+    }
+    return this.http.post<User>(this.apiUrl, JSON.stringify(newUser));
+  }
 }
