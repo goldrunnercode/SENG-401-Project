@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import {Observable} from "rxjs";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {map} from "rxjs/operators";
+import {User} from "../app.component"
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-create-account',
@@ -20,7 +22,7 @@ export class CreateAccountComponent {
   isHandset: boolean = false;
   public innerWidth: any;
 
-  constructor(private breakpointObserver: BreakpointObserver, private fb: FormBuilder, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private fb: FormBuilder, private userService: UsersService, private router: Router) {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
@@ -47,30 +49,16 @@ export class CreateAccountComponent {
 
   onSubmit(): void {
 
-    // @ts-ignore
-    if(this.accountForm.get('firstName').value == null){
-      alert("All fields are required.");
-      return;
-    }
-    // @ts-ignore
-    if(this.accountForm.get('lastName').value == null){
-      alert("All fields are required.");
-      return;
-    }
-    // @ts-ignore
-    if(this.accountForm.get('email').value == null){
-      alert("All fields are required.");
-      return;
-    }
-    // @ts-ignore
-    if(this.accountForm.get('password').value == null){
-      alert("All fields are required.");
-      return;
+    let newUser: User = {
+      p_id: undefined,
+      email: this.accountForm.get('email')?.value,
+      password: this.accountForm.get('password')?.value,
+      fname: this.accountForm.get('firstName')?.value,
+      lname: this.accountForm.get('lastName')?.value,
+      isAdmin: false
     }
 
-    // Add new user
-    this.router.navigate(['../content']);
-    alert("Account Created.\nSign in to access account");
-
+    this.userService.createUser(newUser).subscribe(() => {});
+    this.router.navigate(['/loading-page']);
   }
 }

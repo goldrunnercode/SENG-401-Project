@@ -12,8 +12,8 @@ export class MenuBarComponent implements OnInit {
   current: User = {
     email: '',
     password: '',
-    first_name: '',
-    last_name: '',
+    fname: '',
+    lname: '',
     isAdmin: false
   };
   signed_in = false;

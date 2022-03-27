@@ -633,7 +633,7 @@ const requestListener = function (req, res) {
                     case "GET":         // Get All Users
                         try {
                             person_db.query(
-                                'SELECT p.email, p.password ' +
+                                'SELECT p.email, p.password, p.fname, p.lname, p.p_id ' +
                                 'FROM person as p ' +
                                 'WHERE p.isVisible = 1',
                                 function (err, results) {
@@ -651,14 +651,7 @@ const requestListener = function (req, res) {
                         if (url_pieces[2]) {
                             p_id = url_pieces[2];
                             try {
-                                person_db.query('SELECT * FROM person WHERE p_id = ' + p_id, function (err, results) {
-                                    if (err) throw err;
-                                    if (results != null && results.length > 0) {
-                                        person_db.query('INSERT INTO Person (p_id, isVisible, email, password, fname, lname, isAdmin) VALUES (' +
-                                            p_id + ',0,\'' + results[0].email + '\',\'' + results[0].password + '\',\'' + results[0].fname + '\',\'' + 
-                                            results[0].lname + '\',' + results[0].isAdmin + ')');
-                                    }
-                                })
+                                person_db.query('UPDATE Person SET isVisible = 0 WHERE p_id = ' + p_id)
                             } catch (error) { }
 
                             try {
@@ -666,9 +659,13 @@ const requestListener = function (req, res) {
                                     if (err) throw err;
                                     if (results != null && results.length > 0) {
                                         for (i = 0; i < results.length; i++) {
-                                            recipe_write_db.query('INSERT INTO Recipe (r_id, fname, lname, instructions, category, cuisine, vegetarian, glutenFree, image, author, isVisible, date_posted, likes, description) VALUES (' +
-                                            r_id + ',\'' + results[0].fname + '\',\'' + results[0].lname + '\',\'' + results[0].instructions + '\',\'' + results[0].category + '\',\'' + results[0].cuisine + '\',' + results[0].vegetarian + ',' +
-                                            results[0].glutenFree + ',\'' + results[0].image + '\',\'' + results[0].author + '\',0,\'' + results[0].date_posted + '\',' + results[0].likes + ',\'' + results[0].description + '\')');
+                                            recipe_read_db.query('SELECT * FROM Recipe WHERE r_id = ' + results[i].r_id, function (err2, results2) {
+                                                if(err2) throw err2;
+                                                if(results2 != null && results2.length > 0 {
+                                                   recipe_write_db.query('INSERT INTO Recipe (r_id, fname, lname, instructions, category, cuisine, vegetarian, glutenFree, image, author, isVisible, date_posted, likes, description) VALUES (' +
+                                                        results2[0].r_id + ',\'' + results2[0].fname + '\',\'' + results2[0].lname + '\',\'' + results2[0].instructions + '\',\'' + results2[0].category + '\',\'' + results2[0].cuisine + '\',' + results2[0].vegetarian + ',' +
+                                                        results2[0].glutenFree + ',\'' + results2[0].image + '\',\'' + results2[0].author + '\',0,\'' + results2[0].date_posted + '\',' + results2[0].likes + ',\'' + results2[0].description + '\')');
+                                            })
                                         }
                                     }
 
