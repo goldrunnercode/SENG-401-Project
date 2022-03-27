@@ -14,25 +14,25 @@ const person_db = mysql.createConnection({
     // keep the database the same
     host: 'localhost',
     user: 'recipeasy',
-    password: 'H@ckey00',
+    password: 'r3c1p3a5y',
     database: 'RECIPEASY_PERSON'
 });
 const middle_db = mysql.createConnection({
     host: 'localhost',
     user: 'recipeasy',
-    password: 'H@ckey00',
+    password: 'r3c1p3a5y',
     database: 'RECIPEASY_MID'
 });
 const recipe_read_db = mysql.createConnection({
     host: 'localhost',
     user: 'recipeasy',
-    password: 'H@ckey00',
+    password: 'r3c1p3a5y',
     database: 'RECIPEASY_RECIPE_READ'
 });
 const recipe_write_db = mysql.createConnection({
     host: 'localhost',
     user: 'recipeasy',
-    password: 'H@ckey00',
+    password: 'r3c1p3a5y',
     database: 'RECIPEASY_RECIPE_WRITE'
 });
 person_db.connect();
