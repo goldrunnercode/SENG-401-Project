@@ -31,8 +31,8 @@ export class PostRecipeComponent implements OnInit {
   currentUser: User = {
     email: '',
     password: '',
-    first_name: '',
-    last_name: '',
+    fname: '',
+    lname: '',
     isAdmin: false
   }
 

@@ -14,15 +14,15 @@ export class ProfileComponent implements OnInit {
   editUser: User = {
     email: '',
     password: '',
-    first_name: '',
-    last_name: '',
+    fname: '',
+    lname: '',
     isAdmin: false
   };
   user: User = {
     email: '',
     password: '',
-    first_name: '',
-    last_name: '',
+    fname: '',
+    lname: '',
     isAdmin: false
   };
 
@@ -33,8 +33,8 @@ export class ProfileComponent implements OnInit {
     this.user = this.authService.getProfile();
     this.editUser.email = this.user.email;
     this.editUser.password = this.user.password;
-    this.editUser.first_name = this.user.first_name;
-    this.editUser.last_name = this.user.last_name;
+    this.editUser.fname = this.user.fname;
+    this.editUser.lname = this.user.lname;
   }
   onEdit(){
     this.edit = !this.edit;

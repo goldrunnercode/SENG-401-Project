@@ -46,7 +46,7 @@ import { AllUsersComponent } from './all-users/all-users.component';
 import { UserComponent } from './user/user.component';
 import { LoadingPageComponent } from './visuals/loading-page/loading-page.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {FlexLayoutModule} from "@angular/flex-layout";
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +93,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatStepperModule,
     MatListModule,
     MatProgressSpinnerModule,
+    FlexLayoutModule,
   ],
   providers: [AuthenticationService, RecipesService,UsersService, EditRecipeComponent, ContentComponent],
   bootstrap: [AppComponent]

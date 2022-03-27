@@ -633,7 +633,7 @@ const requestListener = function (req, res) {
                     case "GET":         // Get All Users
                         try {
                             person_db.query(
-                                'SELECT p.email, p.password ' +
+                                'SELECT p.email, p.password, p.fname, p.lname, p.p_id ' +
                                 'FROM person as p ' +
                                 'WHERE p.isVisible = 1',
                                 function (err, results) {

@@ -1,7 +1,7 @@
-<mat-card class="mat-elevation-z4" class="dashboard-card">
-    
-    <mat-label>{{userCard?.first_name}} {{userCard?.last_name}}</mat-label>
-    <mat-label style="margin-left:30px">{{userCard?.email}}</mat-label>
-    <button style="margin-left:80%" mat-raised-button color="accent" (click)="banUser()">Ban</button>
-    
+<mat-card class="mat-elevation-z4" class="dashboard-card" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column">
+        <mat-card-title fxLayout="row">{{userCard?.fname}} {{userCard?.lname}}</mat-card-title>
+        <mat-card-subtitle>{{userCard?.email}}</mat-card-subtitle>
+    </div>
+    <button mat-raised-button color="accent" (click)="banUser(userCard?.p_id)">Ban</button>
 </mat-card>

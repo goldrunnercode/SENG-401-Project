@@ -15,8 +15,8 @@ export class AuthenticationService {
   user: User = {
     email: '',
     password: '',
-    first_name: '',
-    last_name: '',
+    fname: '',
+    lname: '',
     isAdmin: true  // true if the user is admin
   };
 
@@ -25,8 +25,8 @@ export class AuthenticationService {
   signIn(user: any): void {
     this.user.email = user.email;
     this.user.password = user.password;
-    this.user.first_name = user.first_name;
-    this.user.last_name = user.last_name;
+    this.user.fname = user.fname;
+    this.user.lname = user.lname;
     this.signed_in = true;
     this.subject.next(this.signed_in);
   }
@@ -35,8 +35,8 @@ export class AuthenticationService {
     this.signed_in = false;
     this.user.email = '';
     this.user.password = '';
-    this.user.first_name = '';
-    this.user.last_name = '';
+    this.user.fname = '';
+    this.user.lname = '';
     this.subject.next(this.signed_in);
   }
 

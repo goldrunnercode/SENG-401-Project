@@ -48,8 +48,8 @@ export class SignInComponent implements OnInit {
           const currentUser = {
             email: this.email,
             password: this.password,
-            first_name: 'Eli',
-            last_name: 'St. James',
+            fname: 'Eli',
+            lname: 'St. James',
             isAdmin: false // change to whatever the service returns for the isAdmin part
           }
 
