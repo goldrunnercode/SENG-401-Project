@@ -8,6 +8,7 @@ const mysql = require('mysql');
 const { stringify } = require('querystring');
 const { REPL_MODE_SLOPPY } = require('repl');
 const { resourceLimits } = require('worker_threads');
+//password : r3c1p3a5y
 const person_db = mysql.createConnection({
     // you need to change all of these to your personal sql login information
     // keep the database the same
@@ -628,10 +629,10 @@ const requestListener = function (req, res) {
                 let obj;
                 let isJson = false;
 
-                switch (url_pieces[2]) {
+                switch (req.method) {
                     case "GET":         // Get All Users
                         try {
-                            recipe_read_db.query(
+                            person_db.query(
                                 'SELECT p.email, p.password ' +
                                 'FROM person as p ' +
                                 'WHERE p.isVisible = 1',

@@ -87,19 +87,28 @@ describe('CreateAccountComponent', () => {
     expect(alert).toHaveBeenCalledWith("All fields are required.");
   });
 
-  it('OnSubmit no firstName', () => {
+  it('OnSubmit no email', () => {
+    component.accountForm.controls['firstName'].setValue('Dave');
+    component.accountForm.controls['lastName'].setValue('Jones');
     component.onSubmit();
     expect(alert).toHaveBeenCalledWith("All fields are required.");
   });
 
-  it('OnSubmit no firstName', () => {
+  it('OnSubmit no password', () => {
+    component.accountForm.controls['firstName'].setValue('Dave');
+    component.accountForm.controls['lastName'].setValue('Jones');
+    component.accountForm.controls['email'].setValue('hiYo123@gmail.com');
     component.onSubmit();
     expect(alert).toHaveBeenCalledWith("All fields are required.");
   });
 
-  it('OnSubmit no firstName', () => {
+  it('OnSubmit account created', () => {
+    component.accountForm.controls['firstName'].setValue('Dave');
+    component.accountForm.controls['lastName'].setValue('Jones');
+    component.accountForm.controls['email'].setValue('hiYo123@gmail.com');
+    component.accountForm.controls['password'].setValue('password');
     component.onSubmit();
-    expect(alert).toHaveBeenCalledWith("All fields are required.");
+    expect(alert).toHaveBeenCalledWith("Account Created.\nSign in to access account");
   });
   
 });

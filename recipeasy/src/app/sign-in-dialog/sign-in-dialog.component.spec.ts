@@ -1,5 +1,4 @@
-
-import { ProfileComponent } from './profile.component';
+import { SignInDialogComponent } from './sign-in-dialog.component';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,13 +26,16 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatListModule } from '@angular/material/list';
 
-describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+
+
+
+describe('SignInComponent', () => {
+  let component: SignInDialogComponent;
+  let fixture: ComponentFixture<SignInDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ],
+      declarations: [ SignInDialogComponent],
       imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -66,32 +68,13 @@ describe('ProfileComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileComponent);
+    fixture = TestBed.createComponent(SignInDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  //This should toggle the edit component
-  it('should toggle the edit twice', () => {
-    component.onEdit();
-    component.onEdit();
-    expect(component.edit).toBeFalse();
-  });
-
-  //This should return the edit component
-  it('should return the edit component', () => {
-    expect(component.editMode()).toBeFalse();
-  });
-
-  //This should edit profile
-  it('should turn edit false', () => {
-    component.edit = true;
-    component.editProfile();
-    expect(component.edit).toBeFalse();
   });
 
 

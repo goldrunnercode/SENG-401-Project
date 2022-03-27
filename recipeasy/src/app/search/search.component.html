@@ -2,8 +2,14 @@
 
 <ng-template style="width: 100%;" cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
     [cdkConnectedOverlayOpen]="isOpen">
-
+    
     <div fxLayout="column" fxLayoutAlign="space-evenly" style="background: #fff;  border: solid 2px; border-radius: 10px">
+        <div fxLayout="row">
+            <mat-form-field style="width:100%" appearance="fill">
+                <mat-label>Search by Name</mat-label>
+                <input matInput name="make" placeholder="Ex. Pizza" [(ngModel)]="name">
+              </mat-form-field>
+        </div>
         <div fxLayout="row" style="align-items: center;">
             <mat-label style="padding: 10px;"><b>
                     Cuisine</b>

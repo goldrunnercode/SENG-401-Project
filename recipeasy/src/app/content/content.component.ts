@@ -3,6 +3,10 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {from, Observable} from "rxjs";
 import {images} from './images';
+import { RecipesService } from '../services/recipes.service';
+import { Router } from '@angular/router';
+import { recipe } from '../recipe/recipe.component';
+import { Filter } from '../Filter';
 
 @Component({
   selector: 'app-content',
@@ -12,6 +16,15 @@ import {images} from './images';
 export class ContentComponent {
   public innerWidth: any;
   isHandset: boolean = false;
+  recipes: recipe[] = [];
+
+  recipeFilter: Filter = {
+    categories: [],
+    cuisines: [],
+    veg: false,
+    gluten: false,
+    name: ''
+  };
   /** Based on the screen size, switch from standard to one column per row */
   isHandsetObserver: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -22,6 +35,17 @@ export class ContentComponent {
     })
   );
 
+  constructor(private breakpointObserver: BreakpointObserver, private recipesService: RecipesService, private router: Router) {
+    this.recipeFilter = this.recipesService.getFilters();
+    console.log(this.recipeFilter);
+    this.recipesService.getRecipes().subscribe((recipes) => {
+      console.log(recipes);
+      this.recipes = recipes as recipe[];
+      console.log(this.recipes);
+      this.recipes = this.filterContent(this.recipes);
+    })
+  }
+
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.isHandsetObserver.subscribe(currentObserverValue => {
@@ -30,133 +54,67 @@ export class ContentComponent {
     })
   }
 
+  postRecipe(recipe: recipe) {
+    this.recipesService.postRecipe(recipe).subscribe((recipe:recipe) => (this.recipes.push(recipe)));
+    console.log("vehicle added");
+    console.log(this.recipes);
+    this.router.navigate(['/loading-page'])
+  }
+
+  deleteRecipe(id?:number) {
+    this.recipesService.deleteRecipe(id).subscribe(() => {});
+    console.log("vehicle deleted");
+    console.log(this.recipes);
+    this.router.navigate(['/loading-page'])
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
   }
 
-  // colSize = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-  //   map(({ matches }) => {
-  //     if (matches) {
-  //       return 2;
-  //     }
-  //     return 1;
-  //   })
-  // );
-
-  recipes = [
-    {
-      r_id: 0,
-      title: 'Pizza',
-      ingredients: ['dough','sauce', 'toppings'],
-      instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      category: 'Dinner',
-      cuisine: 'Italian',
-      vegetarian: true, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user44@email.com'
-    },
-    {
-      r_id: 1,
-      title: 'Sauce',
-      ingredients: ['tomato','pepper', 'oil'],
-      instructions : ['cut up ingredients','blend'],
-      category: 'Lunch',
-      cuisine: 'Italian',
-      vegetarian: true, 
-      glutenFree: true, 
-      image: images[1],
-      author: 'user20@email.com'
-    },
-    {
-      r_id: 2,
-      title: 'Hambuger',
-      ingredients: ['meat','buns', 'ketchup'],
-      instructions :   ['smash meat','cook', 'put on toppings'],
-      category: 'dinner',
-      cuisine: 'american',
-      vegetarian: false, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user49@email.com'
-    },
-    {
-      r_id: 3,
-      title: 'Pizza',
-      ingredients: ['dough','sauce', 'toppings'],
-      instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      category: 'dinner',
-      cuisine: 'italian',
-      vegetarian: false, 
-      glutenFree: true, 
-      image: images[1],
-      author: 'user44@email.com'
-    },
-    {
-      r_id: 4,
-      title: 'Sauce',
-      ingredients: ['tomato','pepper', 'oil'],
-      instructions : ['cut up ingredients','blend'],
-      category: 'lunch',
-      cuisine: 'italian',
-      vegetarian: true, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user20@email.com'
-    },
-    {
-      r_id: 5,
-      title: 'Hambuger',
-      ingredients: ['meat','buns', 'ketchup'],
-      instructions :   ['smash meat','cook', 'put on toppings'],
-      category: 'dinner',
-      cuisine: 'american',
-      vegetarian: false, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user49@email.com'
-    },
-    {
-      r_id: 6,
-      title: 'Pizza',
-      ingredients: ['dough','sauce', 'toppings'],
-      instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      category: 'dinner',
-      cuisine: 'italian',
-      vegetarian: true, 
-      glutenFree: false, 
-      image: images[0],
-      author: 'user44@email.com'
-    },
-    {
-      r_id: 7,
-      title: 'Sauce',
-      ingredients: ['tomato','pepper', 'oil'],
-      instructions : ['cut up ingredients','blend'],
-      category: 'lunch',
-      cuisine: 'italian',
-      vegetarian: true, 
-      glutenFree: true, 
-      image: images[0],
-      author: 'user20@email.com'
-    },
-    {
-      r_id: 8,
-      title: 'Hambuger',
-      ingredients: ['meat','buns', 'ketchup'],
-      instructions :   ['smash meat','cook', 'put on toppings'],
-      category: 'dinner',
-      cuisine: 'american',
-      vegetarian: false, 
-      glutenFree: false, 
-      image: images[0],
-      author: 'user49@email.com'
-    },
-
-  ];
-
-  constructor(private breakpointObserver: BreakpointObserver) {
+  filterContent(filteredRecipes: recipe[]): recipe[] {
     
+    if(this.recipeFilter.categories.length != 0){
+      filteredRecipes = filteredRecipes.filter((recipe) => this.recipeFilter.categories.includes(recipe.category.toLowerCase()));
+    }
+
+    if(this.recipeFilter.cuisines.length != 0){
+      filteredRecipes = filteredRecipes.filter((recipe) => this.recipeFilter.cuisines.includes(recipe.cuisine.toLowerCase()));
+    }
+
+    if(this.recipeFilter.veg){
+      filteredRecipes = filteredRecipes.filter((recipe) => recipe.vegetarian == true)
+    }
+
+    if(this.recipeFilter.gluten){
+      filteredRecipes = filteredRecipes.filter((recipe) => recipe.glutenFree == true)
+    }
+
+    if(this.recipeFilter.name != ''){
+      filteredRecipes = filteredRecipes.filter((recipe) => this.isSubstring(this.recipeFilter.name.toLowerCase().replace(/[^a-z0-9]+/gi, ''), recipe.title.toLowerCase().replace(/[^a-z0-9]+/gi, '')));
+    }
+
+    return filteredRecipes;
   }
+
+  isSubstring(str1: string, str2: string): boolean {
+    let m = str1.length;
+    let n = str2.length;
+
+    for(let i = 0; i < (n-m)+1; i++){
+      var j;
+      for(j = 0; j < m; j++){
+        if(str2[i+j] != str1[j]){
+          break;
+        }
+      }
+      if(j == m){
+        return true;
+      }
+      
+    }
+    return false;
+  }
+
 }

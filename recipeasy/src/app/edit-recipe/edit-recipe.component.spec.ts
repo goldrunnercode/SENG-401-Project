@@ -133,7 +133,7 @@ describe('EditRecipeComponent', () => {
     //Checking On Submit
     it("testing on Submit", () => {
       component.onSubmit();
-      expect(window.console.log).toHaveBeenCalled();
+      expect(window.console.log()).toHaveBeenCalled();
     });
 
 });

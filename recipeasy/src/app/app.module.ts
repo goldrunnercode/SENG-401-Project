@@ -44,6 +44,8 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UserComponent } from './user/user.component';
+import { LoadingPageComponent } from './visuals/loading-page/loading-page.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { UserComponent } from './user/user.component';
     MyRecipesComponent,
     EditRecipeComponent,
     AllUsersComponent,
-    UserComponent
+    UserComponent,
+    LoadingPageComponent
   ],
   imports: [
     BrowserModule,
@@ -89,8 +92,9 @@ import { UserComponent } from './user/user.component';
     ImageCropperModule,
     MatStepperModule,
     MatListModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [AuthenticationService, RecipesService,UsersService, EditRecipeComponent],
+  providers: [AuthenticationService, RecipesService,UsersService, EditRecipeComponent, ContentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
