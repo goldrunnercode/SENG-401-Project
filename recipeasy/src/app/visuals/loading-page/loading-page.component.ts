@@ -17,7 +17,7 @@ export class LoadingPageComponent implements OnInit {
     setTimeout(() => {}, 500)
     this.recipesService.updateDatabase2().subscribe(() => {console.log('update 2 done')});
     setTimeout(() => {}, 500)
-    this.recipesService.updateDatabase2().subscribe(() => {console.log('update 3 done')});
+    this.recipesService.updateDatabase3().subscribe(() => {console.log('update 3 done')});
     setTimeout(() => {this.router.navigate(['/'])}, 1000)
     
   }
