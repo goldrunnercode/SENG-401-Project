@@ -12,7 +12,7 @@ export class LoadingPageComponent implements OnInit {
   constructor(private router: Router, private recipesService: RecipesService) { }
 
   ngOnInit(): void {
-    
+    setTimeout(() => {}, 200)
     this.recipesService.updateDatabase1().subscribe(() => {console.log('update 1 done')});
     setTimeout(() => {}, 1000)
     this.recipesService.updateDatabase2().subscribe(() => {console.log('update 2 done')});

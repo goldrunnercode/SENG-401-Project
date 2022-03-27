@@ -72,7 +72,7 @@
         </mat-form-field>
         <section class="example-section">
           <p><mat-checkbox [checked]="recipe.vegetarian" (change)="recipe.vegetarian = !recipe.vegetarian">Vegetarian</mat-checkbox></p>
-          <p><mat-checkbox [checked]="recipe.glutenFree" (change)="recipe.vegetarian = !recipe.vegetarian">Gluten Free </mat-checkbox></p>
+          <p><mat-checkbox [checked]="recipe.glutenFree" (change)="recipe.glutenFree = !recipe.glutenFree">Gluten Free </mat-checkbox></p>
         </section>
         <div>
           <button *ngIf="titleInputted()" mat-raised-button color="primary" matStepperNext>Next</button>

@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../app.component';
 import { RecipesService } from '../services/recipes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -33,9 +34,9 @@ export class EditRecipeComponent implements OnInit {
   thirdFormGroup!: FormGroup;
   subscription!: Subscription;
   duplicate = false;
-  resipeService!: RecipesService;
 
-  constructor(private _formBuilder: FormBuilder, private authService: AuthenticationService) {
+  constructor(private _formBuilder: FormBuilder, private authService: AuthenticationService, 
+    private recipesService: RecipesService, private router: Router) {
     
   }
 
@@ -143,8 +144,9 @@ export class EditRecipeComponent implements OnInit {
     console.log(this.recipe.ingredients);
     console.log(this.recipe.instructions);
 
-
     // Send new vehicle to api
+    this.recipesService.updateRecipe(this.recipe)
+    this.router.navigate(['/'])
   }
 
 }

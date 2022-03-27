@@ -55,4 +55,8 @@ export class RecipesService {
     return this.http.delete<recipe>(this.apiUrl+id);
   }
 
+  updateRecipe(recipe: recipe): void{
+    this.http.put<any>(this.apiUrl, JSON.stringify(recipe));
+  }
+
 }
