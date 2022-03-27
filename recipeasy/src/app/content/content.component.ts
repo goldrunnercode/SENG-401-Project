@@ -28,6 +28,7 @@ export class ContentComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private recipesService: RecipesService, private router: Router) {
     this.recipesService.getRecipes().subscribe((recipes) => {
+      console.log(recipes);
       this.recipes = recipes as recipe[];
     })
   }
@@ -38,6 +39,13 @@ export class ContentComponent {
       this.isHandset = currentObserverValue;
       console.log(this.innerWidth);
     })
+  }
+
+  postRecipe(recipe: recipe) {
+    this.recipesService.postRecipe(recipe).subscribe((recipe:recipe) => (this.recipes.push(recipe)));
+    console.log("vehicle added");
+    console.log(this.recipes);
+    this.router.navigate(['/loading-page'])
   }
 
   @HostListener('window:resize', ['$event'])
@@ -64,7 +72,7 @@ export class ContentComponent {
   //     cuisine: 'Italian',
   //     vegetarian: true, 
   //     glutenFree: false, 
-  //     image: images[1],
+  //     image: '1647019464547.jpeg',
   //     author: 'user44@email.com'
   //   },
   //   {
@@ -76,7 +84,7 @@ export class ContentComponent {
   //     cuisine: 'Italian',
   //     vegetarian: true, 
   //     glutenFree: true, 
-  //     image: images[1],
+  //     image: '1647019464547.jpeg',
   //     author: 'user20@email.com'
   //   },
   //   {
@@ -88,7 +96,7 @@ export class ContentComponent {
   //     cuisine: 'american',
   //     vegetarian: false, 
   //     glutenFree: false, 
-  //     image: images[1],
+  //     image: '1647019464547.jpeg',
   //     author: 'user49@email.com'
   //   },
   //   {
@@ -100,7 +108,7 @@ export class ContentComponent {
   //     cuisine: 'italian',
   //     vegetarian: false, 
   //     glutenFree: true, 
-  //     image: images[1],
+  //     image: '1647019464547.jpeg',
   //     author: 'user44@email.com'
   //   },
   //   {
@@ -112,7 +120,7 @@ export class ContentComponent {
   //     cuisine: 'italian',
   //     vegetarian: true, 
   //     glutenFree: false, 
-  //     image: images[1],
+  //     image: '1647019464547.jpeg',
   //     author: 'user20@email.com'
   //   },
   //   {
@@ -124,7 +132,7 @@ export class ContentComponent {
   //     cuisine: 'american',
   //     vegetarian: false, 
   //     glutenFree: false, 
-  //     image: images[1],
+  //     image: '1647019464547.jpeg',
   //     author: 'user49@email.com'
   //   },
   //   {
@@ -136,7 +144,7 @@ export class ContentComponent {
   //     cuisine: 'italian',
   //     vegetarian: true, 
   //     glutenFree: false, 
-  //     image: images[0],
+  //     image: '1647019464547.jpeg',
   //     author: 'user44@email.com'
   //   },
   //   {
@@ -148,7 +156,7 @@ export class ContentComponent {
   //     cuisine: 'italian',
   //     vegetarian: true, 
   //     glutenFree: true, 
-  //     image: images[0],
+  //     image: '1647019464547.jpeg',
   //     author: 'user20@email.com'
   //   },
   //   {
@@ -160,7 +168,7 @@ export class ContentComponent {
   //     cuisine: 'american',
   //     vegetarian: false, 
   //     glutenFree: false, 
-  //     image: images[0],
+  //     image: '1647019464547.jpeg',
   //     author: 'user49@email.com'
   //   },
 

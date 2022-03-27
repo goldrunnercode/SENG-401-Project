@@ -8,30 +8,31 @@ const mysql = require('mysql');
 const { stringify } = require('querystring');
 const { REPL_MODE_SLOPPY } = require('repl');
 const { resourceLimits } = require('worker_threads');
+//password : r3c1p3a5y
 const person_db = mysql.createConnection({
     // you need to change all of these to your personal sql login information
     // keep the database the same
     host: 'localhost',
     user: 'recipeasy',
-    password: 'r3c1p3a5y',
+    password: 'H@ckey00',
     database: 'RECIPEASY_PERSON'
 });
 const middle_db = mysql.createConnection({
     host: 'localhost',
     user: 'recipeasy',
-    password: 'r3c1p3a5y',
+    password: 'H@ckey00',
     database: 'RECIPEASY_MID'
 });
 const recipe_read_db = mysql.createConnection({
     host: 'localhost',
     user: 'recipeasy',
-    password: 'r3c1p3a5y',
+    password: 'H@ckey00',
     database: 'RECIPEASY_RECIPE_READ'
 });
 const recipe_write_db = mysql.createConnection({
     host: 'localhost',
     user: 'recipeasy',
-    password: 'r3c1p3a5y',
+    password: 'H@ckey00',
     database: 'RECIPEASY_RECIPE_WRITE'
 });
 person_db.connect();

@@ -5,6 +5,8 @@ import {recipe} from '../recipe/recipe.component';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../app.component';
+import { RecipesService } from '../services/recipes.service';
+import { ContentComponent } from '../content/content.component';
 
 
 @Component({
@@ -48,7 +50,7 @@ export class PostRecipeComponent implements OnInit {
   duplicate = false;
   subscription!: Subscription;
 
-  constructor(private _formBuilder: FormBuilder, fb: FormBuilder, private authService: AuthenticationService) {
+  constructor(private _formBuilder: FormBuilder, fb: FormBuilder, private content: ContentComponent, private authService: AuthenticationService, private recipesService: RecipesService) {
     this.specs = fb.group({
       vegetarian: false,
       gluten_free: false
@@ -152,14 +154,17 @@ export class PostRecipeComponent implements OnInit {
   }
 
   onSubmit(): void {
+    let file = base64ToFile(this.croppedImage);
+    console.log(file);
+    
     //save uploaded image
     this.new.author = this.currentUser.email;
     this.new.title = this.title;
-    this.new.image = this.croppedImage;
     this.new.category = this.selectedCategory;
     this.new.cuisine = this.selectedCuisine;
     this.new.vegetarian = this.vegetarian;
     this.new.glutenFree = this.glutenFree;
+    this.new.image = 'image.lol';
 
     console.log(this.new.author);
     console.log(this.new.title);
@@ -169,9 +174,22 @@ export class PostRecipeComponent implements OnInit {
     console.log(this.new.cuisine);
     console.log(this.new.ingredients);
     console.log(this.new.instructions);
+    console.log(this.new.image);
 
 
     // Send new vehicle to api
+    this.content.postRecipe(this.new);
   }
+
+  dataURItoBlob(dataURI: string) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/png' });    
+    return blob;
+ }
 
 }

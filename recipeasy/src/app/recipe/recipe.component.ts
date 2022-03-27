@@ -5,14 +5,14 @@ import { RecipeViewComponent } from '../recipe-view/recipe-view.component';
 export interface recipe{
   r_id?: number;
   title: string,
-  ingredients: string[],
-  instructions: string[],
   category: string,
   cuisine: string,
   vegetarian: boolean,
   glutenFree: boolean,
   image: string,
-  author: string
+  author: string,
+  ingredients: string[],
+  instructions: string[]
 };
 
 @Component({
