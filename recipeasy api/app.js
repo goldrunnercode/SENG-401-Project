@@ -682,7 +682,7 @@ const requestListener = function (req, res) {
                         try {
                             obj = JSON.parse(body);
                             isJSON = true;
-                        } catch (error) { }
+                        } catch (error) {}
                         if (isJSON) {
                             // work with the JSON information
 
@@ -693,7 +693,6 @@ const requestListener = function (req, res) {
                                 we don't care about that.
                             */
                             let valid = true;
-
                             // find each attribute we need
                             let email = '';
                             if (obj.email) email = obj.email;
@@ -720,9 +719,22 @@ const requestListener = function (req, res) {
                             if (valid) {
                                 // get the p_id to use
                                 try {
-                                    person_db.query('INSERT INTO Person (p_id, isVisible, email, password, fname, lname, isAdmin) VALUES (' +
-                                        p_id + ',' + isVisible + ',\'' + replaceApostrophe(email) + '\',\'' + replaceApostrophe(password) + '\',\'' + replaceApostrophe(fname) +
-                                                + '\',\'' + replaceApostrophe(lname) + '\',' + isAdmin + ')');
+
+                                    person_db.query('SELECT MAX(p_id) as max_p_id FROM Person', function (err, results) {
+                                        if (err) throw err;
+                                        if (results != null && results.length > 0) {
+                                            //let r_id = ;
+                    
+                                            console.log(results[0].max_p_id, typeof results[0].max_p_id)
+                                            //var p_id = parseInt(r_id) + 1;
+                                            //console.log(r_id, p_id);
+
+                                            
+                                            person_db.query('INSERT INTO Person (p_id, isVisible, email, password, fname, lname, isAdmin) VALUES (' +
+                                            (results[0].max_p_id+1) + ',' + isVisible + ',\'' + replaceApostrophe(email) + '\',\'' + replaceApostrophe(password) + 
+                                            '\',\'' + replaceApostrophe(fname) + '\',\'' + replaceApostrophe(lname) + '\',' + isAdmin + ')');
+                                        }
+                                    })
                                 } catch (error) { }
                             } else res.end();
                         }

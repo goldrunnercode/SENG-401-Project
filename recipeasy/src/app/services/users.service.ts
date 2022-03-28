@@ -24,8 +24,13 @@ export class UsersService {
       password: user.password,
       fname: user.fname,
       lname: user.lname,
-      isAdmin: user.isAdmin
+      isAdmin: 0
     }
+    if(user.isAdmin){
+      newUser.isAdmin = 1;
+    }
+    
+    
     return this.http.post<User>(this.apiUrl, JSON.stringify(newUser));
   }
 }
