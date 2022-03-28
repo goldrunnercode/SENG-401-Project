@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {AppComponent} from '../app.component';
+import { Observable } from 'rxjs';
 import { Filter } from '../Filter';
 import { recipe } from '../recipe/recipe.component';
 
@@ -18,7 +17,6 @@ export class RecipesService {
     gluten: false,
     name: ''
   };
-
 
   allRecipes: recipe[] = [];
 
