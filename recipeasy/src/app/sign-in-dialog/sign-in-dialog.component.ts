@@ -29,6 +29,13 @@ export class SignInDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  allFilled(): boolean {
+    if(this.data.email == '' || this.data.password == ''){
+      return false;
+    }
+    return true;
+  }
+
   onNoClick(): void {
     this.dat.submit = false;
     this.dialogRef.close();

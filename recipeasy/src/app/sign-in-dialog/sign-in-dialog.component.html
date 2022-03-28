@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Sign In</h2>
-<div *ngIf="!dat.validLogin" style="margin-top: 10px; background-color: #c50061; border-radius:3px;">
+<div *ngIf="!dat.validLogin" style="margin-top: 10px; background-color: #f857a7; border-radius:3px;">
   <h2 style="color:#fff; text-align:center;">Access Rejected</h2>
 </div>
 <div mat-dialog-content>
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div>
-    <button mat-raised-button color="primary" [mat-dialog-close]="dat" cdkFocusInitial>Sign in</button>
+    <button *ngIf="allFilled()" mat-raised-button color="primary" [mat-dialog-close]="dat" cdkFocusInitial>Sign in</button>
     <button style="margin-left: 5px" mat-raised-button color="accent" (click)="onNoClick()">Cancel</button>
   </div>
 </div>

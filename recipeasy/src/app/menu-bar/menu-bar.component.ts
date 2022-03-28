@@ -38,6 +38,7 @@ export class MenuBarComponent implements OnInit {
     console.log(user.password);
     this.authService.signIn(user);
     this.signed_in = true;
+    this.current = this.authService.getProfile();
   }
 
   onSignOut(): void {

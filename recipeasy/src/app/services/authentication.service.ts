@@ -27,7 +27,7 @@ export class AuthenticationService {
     this.user.password = user.password;
     this.user.fname = user.fname;
     this.user.lname = user.lname;
-    this.signed_in = user.isAdmin;
+    this.user.isAdmin = user.isAdmin;
   }
 
   signOut(): void {
@@ -36,6 +36,7 @@ export class AuthenticationService {
     this.user.password = '';
     this.user.fname = '';
     this.user.lname = '';
+    this.user.isAdmin = false;
   }
 
   getProfile(): User {
