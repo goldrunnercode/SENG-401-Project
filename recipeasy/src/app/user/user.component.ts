@@ -19,6 +19,6 @@ export class UserComponent implements OnInit {
   }
 
   banUser(id: any) {
-    this.userService.deleteUser(id).subscribe(() => {});
+    this.userService.deleteUser(id).subscribe((user) => {console.log(user)});
   }
 }

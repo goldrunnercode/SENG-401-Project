@@ -58,7 +58,7 @@ export class CreateAccountComponent {
       isAdmin: false
     }
 
-    this.userService.createUser(newUser).subscribe(() => {});
-    this.router.navigate(['/loading-page']);
+    this.userService.createUser(newUser).subscribe((user) => {console.log(user)});
+    this.router.navigate(['/']);
   }
 }
