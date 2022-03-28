@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from '../app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  apiUrl = 'http://localhost:8008/user';
+  apiUrl = 'http://localhost:8008/user/';
 
   constructor(private http: HttpClient) {}
 
@@ -14,8 +15,9 @@ export class UsersService {
     return this.http.get<User[]>(this.apiUrl);
   }
 
-  deleteUser(id : number) {
-    return this.http.delete<User>(this.apiUrl + '/' + id);
+  deleteUser(id?: number) {
+    console.log("DELETE USER: ", id)
+    return this.http.delete<User>(this.apiUrl + id);
   }
 
   createUser(user: User) {
