@@ -1,4 +1,7 @@
 <h2 mat-dialog-title>Sign In</h2>
+<div *ngIf="!dat.validLogin" style="margin-top: 10px; background-color: #c50061; border-radius:3px;">
+  <h2 style="color:#fff; text-align:center;">Access Rejected</h2>
+</div>
 <div mat-dialog-content>
   <p>
     Please you email and password in the given fields.

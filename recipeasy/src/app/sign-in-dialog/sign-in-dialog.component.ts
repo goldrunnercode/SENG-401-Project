@@ -7,6 +7,7 @@ export interface DialogData {
   email: string;
   password: string;
   submit: boolean;
+  validLogin: boolean;
 }
 
 @Component({
