@@ -52,12 +52,14 @@
   </mat-dialog-content>
 </div>
 <div *ngIf="editMode">
+  <mat-dialog-content>
   <div>
     <button mat-raised-button color="accent" (click)="editMode = !editMode">Cancel</button>
   </div>
   <div>
     <app-edit-recipe [recipe]="data"></app-edit-recipe>
   </div>
+</mat-dialog-content>
 </div>
 <div *ngIf="deleteMode">
   <h1>Delete recipe?</h1>

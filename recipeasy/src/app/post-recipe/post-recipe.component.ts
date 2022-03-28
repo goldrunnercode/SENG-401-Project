@@ -144,8 +144,7 @@ export class PostRecipeComponent implements OnInit {
     console.log(this.new.instructions);
     console.log(this.new.image);
 
-
-    // Send new vehicle to api
+    // Send new recipe to api
     this.content.postRecipe(this.new);
   }
 

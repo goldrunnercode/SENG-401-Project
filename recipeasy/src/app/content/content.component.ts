@@ -55,14 +55,14 @@ export class ContentComponent {
 
   postRecipe(recipe: recipe) {
     this.recipesService.postRecipe(recipe).subscribe((recipe:recipe) => (this.recipes.push(recipe)));
-    console.log("vehicle added");
+    console.log("recipe added");
     console.log(this.recipes);
     this.router.navigate(['/loading-page'])
   }
 
   deleteRecipe(id?:number) {
     this.recipesService.deleteRecipe(id).subscribe(() => {});
-    console.log("vehicle deleted");
+    console.log("recipe deleted");
     console.log(this.recipes);
     this.router.navigate(['/loading-page'])
   }

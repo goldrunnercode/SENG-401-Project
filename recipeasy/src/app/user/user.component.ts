@@ -18,7 +18,9 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  banUser(id: any) {
+  banUser(id?: number) {
     this.userService.deleteUser(id).subscribe((user) => {console.log(user)});
+    // this.userService.deleteUser(id).subscribe(() => {});
+    // this.router.navigate(['/all-users'])
   }
 }
