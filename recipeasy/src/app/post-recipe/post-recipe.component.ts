@@ -122,26 +122,8 @@ export class PostRecipeComponent implements OnInit {
     
     return true;
   }
-
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-  imageLoaded() {
-    /* show cropper */
-  }
-  cropperReady() {
-    /* cropper ready */
-  }
-  loadImageFailed() {
-    /* show message */
-  }
-
+  
   onSubmit(): void {
-    let file = base64ToFile(this.croppedImage);
-    console.log(file);
     
     //save uploaded image
     this.new.author = this.currentUser.email;
