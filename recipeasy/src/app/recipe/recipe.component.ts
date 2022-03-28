@@ -33,10 +33,6 @@ export class RecipeComponent implements OnInit {
       width: '600px',
       data: this.recipeCard,
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    // });
   }
 
 }

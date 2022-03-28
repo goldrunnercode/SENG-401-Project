@@ -1,4 +1,5 @@
 <button mat-button (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin">Search Filter</button>
+<button mat-button (click)="clearFilters()">Clear all filters</button>
 
 <ng-template style="width: 100%;" cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
     [cdkConnectedOverlayOpen]="isOpen">

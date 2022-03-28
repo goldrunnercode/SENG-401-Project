@@ -20,6 +20,5 @@ export class UserComponent implements OnInit {
 
   banUser(id: any) {
     this.userService.deleteUser(id).subscribe(() => {});
-    this.router.navigate(['/loading-page']);
   }
 }
