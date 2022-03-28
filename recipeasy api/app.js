@@ -665,8 +665,12 @@ const requestListener = function (req, res) {
                                                    recipe_write_db.query('INSERT INTO Recipe (r_id, fname, lname, instructions, category, cuisine, vegetarian, glutenFree, image, author, isVisible, date_posted, likes, description) VALUES (' +
                                                         results2[0].r_id + ',\'' + results2[0].fname + '\',\'' + results2[0].lname + '\',\'' + results2[0].instructions + '\',\'' + results2[0].category + '\',\'' + results2[0].cuisine + '\',' + results2[0].vegetarian + ',' +
                                                         results2[0].glutenFree + ',\'' + results2[0].image + '\',\'' + results2[0].author + '\',0,\'' + results2[0].date_posted + '\',' + results2[0].likes + ',\'' + results2[0].description + '\')');
+<<<<<<< HEAD
                                                 }
                                             })
+=======
+                                            }})
+>>>>>>> 6aa7d137fc1f04c106f11a73a5f29fbad9a7dbc1
                                         }
                                     }
 
