@@ -47,5 +47,5 @@ export class AuthenticationService {
     return this.signed_in;
   }
 
-
+  
 }

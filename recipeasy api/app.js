@@ -695,10 +695,6 @@ const requestListener = function (req, res) {
                             let valid = true;
 
                             // find each attribute we need
-                            let p_id = -1;
-                            if (obj.p_id) p_id = obj.p_id;
-                            else valid = false;
-
                             let email = '';
                             if (obj.email) email = obj.email;
                             else valid = false;
@@ -717,23 +713,16 @@ const requestListener = function (req, res) {
 
                             // create default values for some attributes if they are not there
                             let isAdmin = 0;
+                            if(obj.isAdmin) isAdmin = obj.isAdmin;
 
                             let isVisible = 1;
 
                             if (valid) {
                                 // get the p_id to use
                                 try {
-                                    person_db.query('SELECT MAX(p_id) as max_p_id FROM Person', function (err, results) {
-                                        if (err) throw err;
-                                        if (results != null && results.length > 0) {
-                                            p_id = results[0].max_p_id + 1;
-
-                                            // Create User
-                                            person_db.query('INSERT INTO Person (p_id, isVisible, email, password, fname, lname, isAdmin) VALUES (' +
-                                                p_id + ',' + isVisible + ',\'' + replaceApostrophe(email) + '\',\'' + replaceApostrophe(password) + '\',\'' + replaceApostrophe(fname) +
+                                    person_db.query('INSERT INTO Person (p_id, isVisible, email, password, fname, lname, isAdmin) VALUES (' +
+                                        p_id + ',' + isVisible + ',\'' + replaceApostrophe(email) + '\',\'' + replaceApostrophe(password) + '\',\'' + replaceApostrophe(fname) +
                                                 + '\',\'' + replaceApostrophe(lname) + '\',' + isAdmin + ')');
-                                        }
-                                    })
                                 } catch (error) { }
                             } else res.end();
                         }
