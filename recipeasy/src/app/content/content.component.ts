@@ -1,12 +1,11 @@
-import {Component, HostListener} from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import {from, Observable} from "rxjs";
-import {images} from './images';
-import { RecipesService } from '../services/recipes.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { recipe } from '../recipe/recipe.component';
+import { Observable } from "rxjs";
+import { map } from 'rxjs/operators';
 import { Filter } from '../Filter';
+import { recipe } from '../recipe/recipe.component';
+import { RecipesService } from '../services/recipes.service';
 
 @Component({
   selector: 'app-content',

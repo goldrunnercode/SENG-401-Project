@@ -11,24 +11,23 @@ export class AuthenticationService {
   private apiUrl = 'http://localhost:8008/user'
   private signed_in: boolean = false;
   private subject = new Subject<any>();
-  private userSubject = new Subject<User>();
   user: User = {
     email: '',
     password: '',
     fname: '',
     lname: '',
-    isAdmin: true  // true if the user is admin
+    isAdmin: false
   };
 
   constructor(private http: HttpClient) { }
 
   signIn(user: any): void {
+    this.signed_in = true;
     this.user.email = user.email;
     this.user.password = user.password;
     this.user.fname = user.fname;
     this.user.lname = user.lname;
-    this.signed_in = true;
-    this.subject.next(this.signed_in);
+    this.user.isAdmin = user.isAdmin;
   }
 
   signOut(): void {
@@ -37,19 +36,15 @@ export class AuthenticationService {
     this.user.password = '';
     this.user.fname = '';
     this.user.lname = '';
-    this.subject.next(this.signed_in);
+    this.user.isAdmin = false;
   }
 
   getProfile(): User {
     return this.user;
   }
 
-  authenticateUser(): Observable<any> {
-    return this.subject.asObservable();
-  }
-
-  profileInfo(): Observable<User> {
-    return this.userSubject.asObservable();
+  isSignedIn(): boolean {
+    return this.signed_in;
   }
 
 

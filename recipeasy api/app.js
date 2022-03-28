@@ -633,7 +633,7 @@ const requestListener = function (req, res) {
                     case "GET":         // Get All Users
                         try {
                             person_db.query(
-                                'SELECT p.email, p.password, p.fname, p.lname, p.p_id ' +
+                                'SELECT *' +
                                 'FROM person as p ' +
                                 'WHERE p.isVisible = 1',
                                 function (err, results) {
@@ -661,11 +661,13 @@ const requestListener = function (req, res) {
                                         for (i = 0; i < results.length; i++) {
                                             recipe_read_db.query('SELECT * FROM Recipe WHERE r_id = ' + results[i].r_id, function (err2, results2) {
                                                 if(err2) throw err2;
-                                                if(results2 != null && results2.length > 0 {
-                                                   recipe_write_db.query('INSERT INTO Recipe (r_id, fname, lname, instructions, category, cuisine, vegetarian, glutenFree, image, author, isVisible, date_posted, likes, description) VALUES (' +
-                                                        results2[0].r_id + ',\'' + results2[0].fname + '\',\'' + results2[0].lname + '\',\'' + results2[0].instructions + '\',\'' + results2[0].category + '\',\'' + results2[0].cuisine + '\',' + results2[0].vegetarian + ',' +
-                                                        results2[0].glutenFree + ',\'' + results2[0].image + '\',\'' + results2[0].author + '\',0,\'' + results2[0].date_posted + '\',' + results2[0].likes + ',\'' + results2[0].description + '\')');
-                                            })
+                                                if(results2 != null && results2.length > 0) {
+                                                   recipe_write_db.query('INSERT INTO Recipe (r_id, name, category, cuisine, vegetarian, glutenFree, image, author, isVisible, date_posted, likes, description) VALUES (' +
+                                                        results2[0].r_id + ',\'' + results2[0].name + '\',\'' + results2[0].category + '\',\'' + results2[0].cuisine + '\',' + results2[0].vegetarian + ',' +
+                                                        results2[0].glutenFree + ',\'' + results2[0].image + '\',\'' + results2[0].author + '\',0,\'' + results2[0].date_posted + '\',' + results2[0].likes + ',\'' + results2[0].description + '\')'
+                                                    );
+                                                }
+                                            });
                                         }
                                     }
 

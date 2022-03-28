@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AppComponent } from '../app.component';
+import { AppComponent, User } from '../app.component';
 import { MenuBarComponent } from '../menu-bar/menu-bar.component';
+import { UsersService } from '../services/users.service';
 import { SignInDialogComponent } from '../sign-in-dialog/sign-in-dialog.component';
 //import {AuthenticationService} from '../services/authentication.service';
 //import {Subscription} from "rxjs"
@@ -18,17 +19,19 @@ export class SignInComponent implements OnInit {
   email !: string
   password !: string
   submit !: boolean
+  users?: User[];
+  validLogin : boolean = true;
   //subscription!: Subscription;
 
 
-  constructor(public dialog: MatDialog, public app: MenuBarComponent, private router: Router) {
+  constructor(public dialog: MatDialog, public app: MenuBarComponent, private router: Router, private usersService: UsersService) {
 
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(SignInDialogComponent, {
       width: '350px',
-      data: {email: this.email, password: this.password, submit: this.submit},
+      data: {email: '', password: '', submit: this.submit, validLogin: this.validLogin},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -43,25 +46,38 @@ export class SignInComponent implements OnInit {
 
 
           // have to check if the user is admin
-
-
-          const currentUser = {
-            email: this.email,
-            password: this.password,
-            fname: 'Eli',
-            lname: 'St. James',
-            isAdmin: false // change to whatever the service returns for the isAdmin part
-          }
+        
 
           //verify user
+          this.usersService.getUsers().subscribe((users) => {
+            this.users = users as User[];
+            console.log(this.users);
+            for(let i = 0; i < users.length; i++){
+              console.log(result.email);
+              console.log(users[i].email)
+              if(result.email == users[i].email){
+                console.log('found match');
+              }
+            }
+            this.users = this.users.filter((user: User) => (user.email === result.email && user.password == result.password));
+            console.log(this.users);
 
-          //sign user in
-          this.app.signIn(currentUser);
-
+            if(this.users.length == 0){
+              this.validLogin = false;
+              console.log("Invalid login");
+              this.openDialog();
+            }
+            else{
+              this.validLogin = true;
+              let current = this.users[0];
+              this.app.signIn(current);
+              this.router.navigate(['/'])
+            }
+          })
           //reset form
           this.email = "";
           this.password = "";
-          this.router.navigate(['/'])
+          
         }
         else{
           alert("Please fill in all fields")

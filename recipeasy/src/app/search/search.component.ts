@@ -71,5 +71,6 @@ export class SearchComponent implements OnInit {
     this.vegetarian = false;
     this.glutenFree = false;
     this.name = '';
+    this.filterRecipes();
   }
 }

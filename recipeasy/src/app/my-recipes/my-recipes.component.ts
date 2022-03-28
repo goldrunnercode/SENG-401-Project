@@ -1,8 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import {from, Observable} from "rxjs";
-import {images} from '../content/images';
+import { User } from '../app.component';
+import { recipe } from '../recipe/recipe.component';
+import { RecipesService } from '../services/recipes.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-my-recipes',
@@ -10,6 +13,15 @@ import {images} from '../content/images';
   styleUrls: ['./my-recipes.component.css']
 })
 export class MyRecipesComponent implements OnInit {
+
+  recipes: recipe[] = [];
+  user: User = {
+    email: '',
+    password: '',
+    fname: '',
+    lname: '',
+    isAdmin: false
+  };
 
   public innerWidth: any;
   isHandset: boolean = false;
@@ -23,7 +35,17 @@ export class MyRecipesComponent implements OnInit {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private recipeService: RecipesService,
+    private authService: AuthenticationService,
+    ) { 
+    this.user = this.authService.getProfile();
+    this.recipeService.getRecipes().subscribe((recipes) => {
+      this.recipes = recipes as recipe[];
+      this.recipes = this.recipes.filter(r => r.author === this.user.email)
+    })
+  }
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
@@ -38,117 +60,4 @@ export class MyRecipesComponent implements OnInit {
     this.innerWidth = event.target.innerWidth;
     console.log(this.innerWidth);
   }
-
-  recipes = [
-    {
-      r_id: 0,
-      title: 'Pizza',
-      ingredients: ['dough','sauce', 'toppings'],
-      instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      category: 'Dinner',
-      cuisine: 'Italian',
-      vegetarian: true, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user44@email.com'
-    },
-    {
-      r_id: 1,
-      title: 'Sauce',
-      ingredients: ['tomato','pepper', 'oil'],
-      instructions : ['cut up ingredients','blend'],
-      category: 'Lunch',
-      cuisine: 'Italian',
-      vegetarian: true, 
-      glutenFree: true, 
-      image: images[1],
-      author: 'user20@email.com'
-    },
-    {
-      r_id: 2,
-      title: 'Hambuger',
-      ingredients: ['meat','buns', 'ketchup'],
-      instructions :   ['smash meat','cook', 'put on toppings'],
-      category: 'dinner',
-      cuisine: 'american',
-      vegetarian: false, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user49@email.com'
-    },
-    {
-      r_id: 3,
-      title: 'Pizza',
-      ingredients: ['dough','sauce', 'toppings'],
-      instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      category: 'dinner',
-      cuisine: 'italian',
-      vegetarian: false, 
-      glutenFree: true, 
-      image: images[1],
-      author: 'user44@email.com'
-    },
-    {
-      r_id: 4,
-      title: 'Sauce',
-      ingredients: ['tomato','pepper', 'oil'],
-      instructions : ['cut up ingredients','blend'],
-      category: 'lunch',
-      cuisine: 'italian',
-      vegetarian: true, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user20@email.com'
-    },
-    {
-      r_id: 5,
-      title: 'Hambuger',
-      ingredients: ['meat','buns', 'ketchup'],
-      instructions :   ['smash meat','cook', 'put on toppings'],
-      category: 'dinner',
-      cuisine: 'american',
-      vegetarian: false, 
-      glutenFree: false, 
-      image: images[1],
-      author: 'user49@email.com'
-    },
-    {
-      r_id: 6,
-      title: 'Pizza',
-      ingredients: ['dough','sauce', 'toppings'],
-      instructions : ['roll dough','put on sauce', 'put on toppings', 'cook'],
-      category: 'dinner',
-      cuisine: 'italian',
-      vegetarian: true, 
-      glutenFree: false, 
-      image: images[0],
-      author: 'user44@email.com'
-    },
-    {
-      r_id: 7,
-      title: 'Sauce',
-      ingredients: ['tomato','pepper', 'oil'],
-      instructions : ['cut up ingredients','blend'],
-      category: 'lunch',
-      cuisine: 'italian',
-      vegetarian: true, 
-      glutenFree: true, 
-      image: images[0],
-      author: 'user20@email.com'
-    },
-    {
-      r_id: 8,
-      title: 'Hambuger',
-      ingredients: ['meat','buns', 'ketchup'],
-      instructions :   ['smash meat','cook', 'put on toppings'],
-      category: 'dinner',
-      cuisine: 'american',
-      vegetarian: false, 
-      glutenFree: false, 
-      image: images[0],
-      author: 'user49@email.com'
-    },
-
-  ];
-
 }

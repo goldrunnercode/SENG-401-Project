@@ -24,7 +24,9 @@ export class MenuBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.authService.authenticateUser().subscribe((value) => (this.signed_in = value));
+    
+    
+    
   }
 
   viewProfile(): void {
@@ -35,11 +37,14 @@ export class MenuBarComponent implements OnInit {
     console.log(user.email);
     console.log(user.password);
     this.authService.signIn(user);
+    this.signed_in = true;
+    this.current = this.authService.getProfile();
   }
 
   onSignOut(): void {
     console.log(this.signed_in);
     if(this.signed_in){
+      this.signed_in = false;
       this.authService.signOut();
     }
     else{

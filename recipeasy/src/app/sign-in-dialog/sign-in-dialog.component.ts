@@ -7,6 +7,7 @@ export interface DialogData {
   email: string;
   password: string;
   submit: boolean;
+  validLogin: boolean;
 }
 
 @Component({
@@ -26,6 +27,13 @@ export class SignInDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  allFilled(): boolean {
+    if(this.data.email == '' || this.data.password == ''){
+      return false;
+    }
+    return true;
   }
 
   onNoClick(): void {
