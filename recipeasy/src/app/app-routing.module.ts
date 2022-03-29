@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { ContentComponent } from './content/content.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import {PostRecipeComponent} from "./post-recipe/post-recipe.component";
 import { AllUsersComponent } from './all-users/all-users.component';

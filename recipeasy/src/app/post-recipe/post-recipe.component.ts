@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {recipe} from '../recipe/recipe.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../app.component';
-import { RecipesService } from '../services/recipes.service';
 import { ContentComponent } from '../content/content.component';
+import { recipe } from '../recipe/recipe.component';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -50,7 +48,11 @@ export class PostRecipeComponent implements OnInit {
   duplicate = false;
   subscription!: Subscription;
 
-  constructor(private _formBuilder: FormBuilder, fb: FormBuilder, private content: ContentComponent, private authService: AuthenticationService, private recipesService: RecipesService) {
+  constructor(
+    private _formBuilder: FormBuilder, 
+    fb: FormBuilder, 
+    private content: ContentComponent, 
+    private authService: AuthenticationService,) {
     this.specs = fb.group({
       vegetarian: false,
       gluten_free: false

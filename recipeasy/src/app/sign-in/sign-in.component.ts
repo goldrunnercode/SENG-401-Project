@@ -1,15 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AppComponent, User } from '../app.component';
+import { User } from '../app.component';
 import { MenuBarComponent } from '../menu-bar/menu-bar.component';
 import { UsersService } from '../services/users.service';
 import { SignInDialogComponent } from '../sign-in-dialog/sign-in-dialog.component';
-//import {AuthenticationService} from '../services/authentication.service';
-//import {Subscription} from "rxjs"
-
-
-
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -25,7 +20,6 @@ export class SignInComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog, public app: MenuBarComponent, private router: Router, private usersService: UsersService) {
-
   }
 
   openDialog() {
