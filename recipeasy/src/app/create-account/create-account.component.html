@@ -62,9 +62,12 @@
           </mat-error>
         </mat-form-field>
       </div>
+      <div style="margin-top: 5px">
+        <h3 *ngIf="emailTaken" style="color:red">Email is already taken</h3>
+      </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button *ngIf="allFilled()" mat-raised-button color="primary" type="submit">Submit</button>
       <button mat-raised-button color="accent" type="button" routerLink="../">Back</button>
     </mat-card-actions>
   </mat-card>

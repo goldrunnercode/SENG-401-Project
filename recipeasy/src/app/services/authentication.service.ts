@@ -8,7 +8,7 @@ import { User } from '../app.component';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:8008/user'
+  private apiUrl = 'http://localhost:8008/user/';
   private signed_in: boolean = false;
   private subject = new Subject<any>();
   user: User = {
@@ -49,6 +49,4 @@ export class AuthenticationService {
   isSignedIn(): boolean {
     return this.signed_in;
   }
-
-  
 }

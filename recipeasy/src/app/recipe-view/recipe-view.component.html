@@ -1,6 +1,8 @@
 <div *ngIf="!editMode && !deleteMode">
   <h1 mat-dialog-actions mat-dialog-title>{{data.title}}
     <button mat-raised-button color="accent" style="margin-left:50px" mat-dialog-close>Close</button>
+    <button *ngIf="data.author == this.authService.getProfile().email || this.authService.getProfile().isAdmin" mat-raised-button color="primary" (click)="editMode = !editMode">Edit</button>
+    <button *ngIf="data.author == this.authService.getProfile().email || this.authService.getProfile().isAdmin" mat-raised-button color="accent" (click)="deleteMode = !deleteMode">Delete</button>
   </h1>
 
   <mat-dialog-content>
