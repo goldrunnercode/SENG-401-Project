@@ -19,14 +19,9 @@ export class MenuBarComponent implements OnInit {
   signed_in = false;
   subscription!: Subscription;
 
-  constructor(public authService: AuthenticationService) {
+  constructor(public authService: AuthenticationService) {}
 
-  }
-
-  ngOnInit(): void {
-    
-    
-    
+  ngOnInit(): void { 
   }
 
   viewProfile(): void {

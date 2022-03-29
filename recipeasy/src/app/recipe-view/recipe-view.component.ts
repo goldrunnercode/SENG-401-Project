@@ -32,10 +32,7 @@ export class RecipeViewComponent implements OnInit {
   }
 
   deleteRecipe(id?: number): void {
-    // delete resipe
-
     this.content.deleteRecipe(id)
-    
   }
 
 }

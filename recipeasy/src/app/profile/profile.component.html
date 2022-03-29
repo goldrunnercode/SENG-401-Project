@@ -1,22 +1,18 @@
 <mat-tab-group>
   <mat-tab label="Profile Info">
     <div class="profile">
-      <h1 class="profile-title"><u>{{user.fname}} {{user.lname}}</u></h1>
+      <h1 class="profile-title"><b><u>{{user.fname}} {{user.lname}}</u></b></h1>
     </div>
     <div class = "profile-info">
-      <h3>Email: {{user.email}}</h3>
-      <h4>Password: {{user.password}}</h4>
+      <h3><b>Email:</b> {{user.email}}</h3>
+      <h4><b>Password:</b> {{user.password}}</h4>
     </div>
     <div>
       <button (click) = "onEdit()"  mat-raised-button color="primary">{{editToggleString}}</button>
-      <button (click) = "onDelete()" style = "margin-left: 10px;" mat-raised-button color="warn">Delete Profile</button>
+      <button (click) = "onDelete()" style = "margin-left: 10px;" mat-raised-button color="accent">Delete Profile</button>
     </div>
     <div style="margin-top:10px;" *ngIf = "editMode()">
 
-      <mat-form-field class = "update-field" appearance="fill">
-        <mat-label>Email</mat-label>
-        <input appearance="fill" matInput placeholder="email" type="text" [(ngModel)]="editUser.email">
-      </mat-form-field>
       <mat-form-field class = "update-field" appearance="fill">
         <mat-label>Password</mat-label>
         <input appearance="fill" matInput placeholder="password" type="text" [(ngModel)]="editUser.password">

@@ -43,8 +43,10 @@
 
         <div fxLayout="row" fxLayoutAlign="space-between">
             <button mat-button color="primary" (click)="clearFilters()">Clear all filters</button>
-            <button mat-button color="primary" (click)="isOpen = false">Cancel</button>
-            <button mat-button color="primary" (click)="filterRecipes()">Apply</button>
+            <div>
+                <button mat-button color="primary" (click)="isOpen = false">Cancel</button>
+                <button mat-button color="primary" (click)="filterRecipes()">Apply</button>
+            </div>
         </div>
     </div>
 </ng-template>

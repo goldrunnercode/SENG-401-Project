@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {recipe} from '../recipe/recipe.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../app.component';
-import { RecipesService } from '../services/recipes.service';
 import { ContentComponent } from '../content/content.component';
+import { recipe } from '../recipe/recipe.component';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -50,7 +48,11 @@ export class PostRecipeComponent implements OnInit {
   duplicate = false;
   subscription!: Subscription;
 
-  constructor(private _formBuilder: FormBuilder, fb: FormBuilder, private content: ContentComponent, private authService: AuthenticationService, private recipesService: RecipesService) {
+  constructor(
+    private _formBuilder: FormBuilder, 
+    fb: FormBuilder, 
+    private content: ContentComponent, 
+    private authService: AuthenticationService,) {
     this.specs = fb.group({
       vegetarian: false,
       gluten_free: false
@@ -118,44 +120,12 @@ export class PostRecipeComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
-  imageChosen(): boolean {
-    if(this.croppedImage == ''){
-      this.isLinear = true;
-      return false;
-    }
-    else{
-      this.isLinear = false;
-      return true;
-    }
-    
-  }
-
   allFilled(): boolean {
-    if(!this.titleInputted() || !this.imageChosen()) {
-      return false;
-    }
+    
     return true;
   }
-
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-  imageLoaded() {
-    /* show cropper */
-  }
-  cropperReady() {
-    /* cropper ready */
-  }
-  loadImageFailed() {
-    /* show message */
-  }
-
+  
   onSubmit(): void {
-    let file = base64ToFile(this.croppedImage);
-    console.log(file);
     
     //save uploaded image
     this.new.author = this.currentUser.email;
@@ -176,8 +146,7 @@ export class PostRecipeComponent implements OnInit {
     console.log(this.new.instructions);
     console.log(this.new.image);
 
-
-    // Send new vehicle to api
+    // Send new recipe to api
     this.content.postRecipe(this.new);
   }
 

@@ -90,6 +90,10 @@ function updateInstructions(results, i) {
 // main body of the program
 const requestListener = function (req, res) {
 
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, DELETE, POST');
+    res.setHeader('Access-Control-Max-Age', 2592000);
+
     // convert the request into a readable format
     res.writeHead(200);
     let body = '';
@@ -682,7 +686,7 @@ const requestListener = function (req, res) {
                         try {
                             obj = JSON.parse(body);
                             isJSON = true;
-                        } catch (error) { }
+                        } catch (error) {}
                         if (isJSON) {
                             // work with the JSON information
 
@@ -693,12 +697,7 @@ const requestListener = function (req, res) {
                                 we don't care about that.
                             */
                             let valid = true;
-
                             // find each attribute we need
-                            let p_id = -1;
-                            if (obj.p_id) p_id = obj.p_id;
-                            else valid = false;
-
                             let email = '';
                             if (obj.email) email = obj.email;
                             else valid = false;
@@ -717,21 +716,21 @@ const requestListener = function (req, res) {
 
                             // create default values for some attributes if they are not there
                             let isAdmin = 0;
+                            if(obj.isAdmin) isAdmin = obj.isAdmin;
 
                             let isVisible = 1;
 
                             if (valid) {
                                 // get the p_id to use
                                 try {
+
                                     person_db.query('SELECT MAX(p_id) as max_p_id FROM Person', function (err, results) {
                                         if (err) throw err;
                                         if (results != null && results.length > 0) {
-                                            p_id = results[0].max_p_id + 1;
-
-                                            // Create User
+            
                                             person_db.query('INSERT INTO Person (p_id, isVisible, email, password, fname, lname, isAdmin) VALUES (' +
-                                                p_id + ',' + isVisible + ',\'' + replaceApostrophe(email) + '\',\'' + replaceApostrophe(password) + '\',\'' + replaceApostrophe(fname) +
-                                                + '\',\'' + replaceApostrophe(lname) + '\',' + isAdmin + ')');
+                                            (results[0].max_p_id + 1) + ',' + isVisible + ',\'' + replaceApostrophe(email) + '\',\'' + replaceApostrophe(password) + 
+                                            '\',\'' + replaceApostrophe(fname) + '\',\'' + replaceApostrophe(lname) + '\',' + isAdmin + ')');
                                         }
                                     })
                                 } catch (error) { }
@@ -758,7 +757,7 @@ const requestListener = function (req, res) {
                             let valid = true;
 
                             // find each attribute we need
-                            let p_id = -1;
+                            let p_id = 0;
                             if (obj.p_id) p_id = obj.p_id;
                             else valid = false;
 
@@ -778,23 +777,18 @@ const requestListener = function (req, res) {
                             if (obj.lname) lname = obj.lname;
                             else valid = false;
 
-                            let isAdmin = -1;
-                            if (obj.isAdmin) isAdmin = obj.isAdmin;
-                            else valid = false;
-
-                            // create default values for some attributes if they are not there
-
-                            let isVisible = 1;
-
                             if (valid) {
                                 try {
-                                    // Update User
-                                    person_db.query('INSERT INTO Person (p_id, isVisible, email, password, fname, ;name, isAdmin)VALUES (' +
-                                        p_id + ',' + isVisible + ',\'' + replaceApostrophe(email) + '\',\'' + replaceApostrophe(password) + '\',\'' + replaceApostrophe(fname) +
-                                        '\',\'' + replaceApostrophe(lname) + '\',' + isAdmin + ')');
+                                    console.log("UPDATING")
+                                    person_db.query('UPDATE Person SET email = \'' + replaceApostrophe(email) + '\', password = \'' + replaceApostrophe(password) + '\', fname = \'' + replaceApostrophe(fname) + '\', lname = \'' + replaceApostrophe(lname) + '\' WHERE p_id = ' + p_id);
+
                                 } catch (error) { }
                             } else res.end();
                         }
+                        res.end();
+                        break;
+
+                    case "OPTIONS":
                         res.end();
                         break;
                 }

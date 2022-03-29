@@ -1,46 +1,7 @@
 
 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-<!--
-  <mat-step [stepControl]="firstFormGroup">
+  <mat-step>
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Choose your image</ng-template>
-      <div class="container">
-        <div >
-          <div >
-            <span class="hiddenFileInput">
-              <input class="choose-file-btn" type="file" (change)="fileChangeEvent($event)" />
-            </span>
-            <div style="height: 50%;">
-              <div class="text-center ">
-
-                <image-cropper style="width: 500px"
-                               [imageChangedEvent]="imageChangedEvent"
-                               [maintainAspectRatio]="true"
-                               [aspectRatio]="4 / 4"
-                               [resizeToWidth]="256"
-                               format="png"
-                               (imageCropped)="imageCropped($event)"
-                               (imageLoaded)="imageLoaded()"
-                               (cropperReady)="cropperReady()"
-                               (loadImageFailed)="loadImageFailed()"></image-cropper>
-              </div>
-              
-              <div class="text-center col-md-4">
-                <h5>Preview</h5>
-                <img [src]="croppedImage" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <button *ngIf="imageChosen()" mat-raised-button color="primary" matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
--->
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Specifications</ng-template>
       <div>
         <mat-form-field appearance="fill">
@@ -97,13 +58,19 @@
         </mat-selection-list>
       </mat-card-content>
       <mat-card-actions>
+
+
+
         <mat-form-field appearance="fill">
           <mat-label>Add Ingredient</mat-label>
           <input appearance="fill" matInput placeholder="Ingredient" type="text" [(ngModel)]="newItem">
           <mat-hint *ngIf="duplicate" style="color: red; font-size: 13px">Duplicate Ingredient</mat-hint>
         </mat-form-field>
         <button *ngIf="listInputFilled()" mat-raised-button color="primary" (click)="addIngredient()">Add</button>
-        <button *ngIf="ingredients.selectedOptions.selected.length>0 && !duplicate" mat-raised-button color="primary" (click)="removeIngredient(ingredients.selectedOptions.selected[0]?.value)">Remove</button>
+        <button 
+          *ngIf="ingredients.selectedOptions.selected.length>0 && !duplicate" 
+          mat-raised-button color="primary" 
+          (click)="removeIngredient(ingredients.selectedOptions.selected[0]?.value)">Remove</button>
       </mat-card-actions>
     </mat-card>
     <div style="margin-top: 10px;">

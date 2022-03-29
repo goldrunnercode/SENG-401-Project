@@ -12,7 +12,7 @@ export class AllUsersComponent implements OnInit {
   constructor(
     private userService : UsersService,
     ){
-      this.userService.getUsers().subscribe((data) => {  console.log("USER", data); this.allUsers = data as User[]; })
+      this.userService.getUsers().subscribe((data) => { this.allUsers = data as User[]; })
     }
 
   ngOnInit(): void {

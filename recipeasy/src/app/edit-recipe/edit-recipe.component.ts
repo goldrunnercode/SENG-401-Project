@@ -1,12 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {recipe} from '../recipe/recipe.component';
-import { Subscription } from 'rxjs';
-import { AuthenticationService } from '../services/authentication.service';
-import { User } from '../app.component';
-import { RecipesService } from '../services/recipes.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Subscription } from 'rxjs';
+import { recipe } from '../recipe/recipe.component';
+import { RecipesService } from '../services/recipes.service';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -35,10 +33,8 @@ export class EditRecipeComponent implements OnInit {
   subscription!: Subscription;
   duplicate = false;
 
-  constructor(private _formBuilder: FormBuilder, private authService: AuthenticationService, 
-    private recipesService: RecipesService, private router: Router) {
-    
-  }
+  constructor(private _formBuilder: FormBuilder, 
+    private recipesService: RecipesService, private router: Router) {}
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -133,8 +129,6 @@ export class EditRecipeComponent implements OnInit {
 
   onSubmit(): void {
     //save uploaded image
-    
-
     console.log(this.recipe.author);
     console.log(this.recipe.title);
     console.log(this.recipe.vegetarian);

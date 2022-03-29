@@ -12,13 +12,18 @@ export class LoadingPageComponent implements OnInit {
   constructor(private router: Router, private recipesService: RecipesService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {}, 200)
+    
     this.recipesService.updateDatabase1().subscribe(() => {console.log('update 1 done')});
-    setTimeout(() => {}, 1000)
-    this.recipesService.updateDatabase2().subscribe(() => {console.log('update 2 done')});
-    setTimeout(() => {}, 500)
-    this.recipesService.updateDatabase3().subscribe(() => {console.log('update 3 done')});
-    setTimeout(() => {this.router.navigate(['/'])}, 1000)
+    setTimeout(() => {
+      this.recipesService.updateDatabase2().subscribe(() => {console.log('update 2 done')});
+      setTimeout(() => {
+        this.recipesService.updateDatabase3().subscribe(() => {console.log('update 3 done')});
+        this.router.navigate(['/']);
+      }, 500)
+    }, 1500)
+    
+    
+    
     
   }
 
