@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import {User} from "../app.component";
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +27,7 @@ export class ProfileComponent implements OnInit {
     isAdmin: false
   };
 
-  constructor( private authService: AuthenticationService) {
+  constructor( private authService: AuthenticationService,private userService: UsersService) {
   }
 
   ngOnInit(): void {
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
   editProfile(){
     this.edit = false;
     this.user = this.editUser;
+    this.userService.updateUser(this.user).subscribe(() => {});
   }
   onDelete(){
     

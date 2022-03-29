@@ -35,4 +35,8 @@ export class UsersService {
     
     return this.http.post<User>(this.apiUrl, JSON.stringify(newUser));
   }
+
+  updateUser(user: User){
+    return this.http.put<User>(this.apiUrl, user);
+  }
 }
