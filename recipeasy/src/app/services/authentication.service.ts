@@ -12,6 +12,7 @@ export class AuthenticationService {
   private signed_in: boolean = false;
   private subject = new Subject<any>();
   user: User = {
+    p_id: undefined,
     email: '',
     password: '',
     fname: '',
@@ -23,6 +24,7 @@ export class AuthenticationService {
 
   signIn(user: any): void {
     this.signed_in = true;
+    this.user.p_id = user.p_id;
     this.user.email = user.email;
     this.user.password = user.password;
     this.user.fname = user.fname;
@@ -32,6 +34,7 @@ export class AuthenticationService {
 
   signOut(): void {
     this.signed_in = false;
+    this.user.p_id = undefined;
     this.user.email = '';
     this.user.password = '';
     this.user.fname = '';

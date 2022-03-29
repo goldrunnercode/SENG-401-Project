@@ -37,6 +37,6 @@ export class UsersService {
   }
 
   updateUser(user: User){
-    return this.http.put<User>(this.apiUrl, user);
+    return this.http.put<User>(this.apiUrl, JSON.stringify(user));
   }
 }
