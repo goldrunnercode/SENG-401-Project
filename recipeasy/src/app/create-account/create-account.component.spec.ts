@@ -93,4 +93,33 @@ describe('CreateAccountComponent', () => {
     expect(true).toBeTrue();
   });
 
+  it('should return true', () => {
+    component.accountForm.controls['firstName'].setValue('Dave');
+    component.accountForm.controls['lastName'].setValue('Jones');
+    component.accountForm.controls['email'].setValue('hiYo123@gmail.com');
+    component.accountForm.controls['password'].setValue('password');
+    expect(component.allFilled()).toBeTrue();
+  });
+
+  it('should return false cause of firstName', () => {
+    component.accountForm.controls['lastName'].setValue('Jones');
+    component.accountForm.controls['email'].setValue('hiYo123@gmail.com');
+    component.accountForm.controls['password'].setValue('password');
+    expect(component.allFilled()).toBeFalse();
+  });
+
+  it('should return false because of last name', () => {
+    component.accountForm.controls['firstName'].setValue('Dave');
+    component.accountForm.controls['email'].setValue('hiYo123@gmail.com');
+    component.accountForm.controls['password'].setValue('password');
+    expect(component.allFilled()).toBeFalse();
+  });
+
+  it('should return false because of password', () => {
+    component.accountForm.controls['firstName'].setValue('Dave');
+    component.accountForm.controls['lastName'].setValue('Jones');
+    component.accountForm.controls['email'].setValue('hiYo123@gmail.com');
+    expect(component.allFilled()).toBeFalse();
+  });
+
 });
