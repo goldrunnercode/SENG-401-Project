@@ -78,6 +78,6 @@ describe('RecipeComponent', () => {
   //Should open the recipe
   it('should open the recipe', () => {
     component.openRecipe();
-    expect(component.dialog).toBeNaN();
+    expect(component.dialog).toBeTruthy();
   });
 });

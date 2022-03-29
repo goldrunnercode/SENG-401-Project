@@ -1,30 +1,38 @@
-import {PostRecipeComponent} from './post-recipe.component';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { MatMenuModule } from '@angular/material/menu';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from '../app-routing.module';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { LayoutModule } from '@angular/cdk/layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule} from "@angular/material/tabs";
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {MatStepperModule} from "@angular/material/stepper";
-import {MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import { PostRecipeComponent } from './post-recipe.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LayoutModule } from '@angular/cdk/layout';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { RecipesService } from '../services/recipes.service';
+import { UsersService } from '../services/users.service';
+import { ContentComponent } from '../content/content.component';
+import { EditRecipeComponent } from '../edit-recipe/edit-recipe.component';
+import { AuthenticationService } from '../services/authentication.service';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 describe('MenuBarComponent', () => {
   let component: PostRecipeComponent;
@@ -58,8 +66,10 @@ describe('MenuBarComponent', () => {
         ImageCropperModule,
         MatStepperModule,
         MatListModule,
-        NoopAnimationsModule
-      ]
+        MatProgressSpinnerModule,
+        FlexLayoutModule,
+      ],
+      providers: [AuthenticationService, RecipesService,UsersService, EditRecipeComponent, ContentComponent]
     })
     .compileComponents();
   });
@@ -129,16 +139,6 @@ it('should turn duplicates true', () => {
     });
 
 
-    //See if an image is chosen
-it('should return false', () => {
-    expect(component.imageChosen()).toBeFalse();
-    });
-
-    //See if an image is chosen, when one has been selected
-it('should return true', () => {
-    component.croppedImage = 'Im a image';
-    expect(component.imageChosen()).toBeTrue();
-    });
 
     //See if all is filled when empty
 it('should not be all filled', () => {
@@ -155,8 +155,8 @@ it('should be all filled', () => {
     //On submit variables should be stored in new 
 it('should store values in new', () => {
     component.title = 'I am a title';
-    component.onSubmit();
-    expect(component.new.title).toBe('I am a title');
+    component.croppedImage = '../../assets/post-images/image0.jpeg'
+    expect(component.onSubmit()).toThrowError();
     });  
 
 });

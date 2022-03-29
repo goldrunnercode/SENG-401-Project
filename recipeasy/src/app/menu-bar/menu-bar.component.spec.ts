@@ -27,6 +27,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import {MatStepperModule} from "@angular/material/stepper";
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AuthenticationService } from '../services/authentication.service';
 
 describe('MenuBarComponent', () => {
   let component: MenuBarComponent;
@@ -61,12 +62,14 @@ describe('MenuBarComponent', () => {
         MatStepperModule,
         MatListModule,
         MatProgressSpinnerModule,
-      ],
+      ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
+    spyOn(window, "alert");
+    spyOn(window.console, 'log');
     fixture = TestBed.createComponent(MenuBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -79,18 +82,18 @@ describe('MenuBarComponent', () => {
   it('should sign in', () => {
       component.current.email = '123@yahoo.com'
       component.signIn(component.current);
-    expect(window.console.log()).toHaveBeenCalled();
+    expect(window.console.log).toHaveBeenCalled();
   });
 
   it('should view profile', () => {
     component.viewProfile();
-  expect(component.authService.getProfile()).toHaveBeenCalled();
+  expect(component.authService.getProfile).toHaveBeenCalled();
 });
 
 it('should sign out', () => {
     component.signed_in = true;
     component.onSignOut();
-  expect(window.console.log()).toHaveBeenCalled();
+  expect(window.console.log).toHaveBeenCalled();
 });
 
 it('should throw alert', () => {

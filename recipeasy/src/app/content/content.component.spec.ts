@@ -7,6 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
+import { recipe } from '../recipe/recipe.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -68,6 +69,7 @@ describe('ContentComponent', () => {
   }));
 
   beforeEach(() => {
+    spyOn(window.console, 'log');
     fixture = TestBed.createComponent(ContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -76,4 +78,75 @@ describe('ContentComponent', () => {
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
+
+  //This tests the posting recipe function
+  it('should post recipe', () => {
+    const rec: recipe = {
+      r_id: 8,
+      title: 'potato',
+      category: 'Chinese',
+      cuisine: 'Fish',
+      vegetarian: true,
+      glutenFree: false,
+      image: 'string',
+      author: 'Tyler',
+      ingredients: ['potaot'],
+      instructions: ['Dont mess up']
+    };
+    component.postRecipe(rec);
+    expect(window.console.log).toHaveBeenCalled();
+  });
+
+  //This tests the posting recipe function
+  it('should delete recipe', () => {
+    const rec: recipe = {
+      r_id: 8,
+      title: 'potato',
+      category: 'Chinese',
+      cuisine: 'Fish',
+      vegetarian: true,
+      glutenFree: false,
+      image: 'string',
+      author: 'Tyler',
+      ingredients: ['potaot'],
+      instructions: ['Dont mess up']
+    };
+    component.postRecipe(rec);
+    component.deleteRecipe(8);
+    expect(window.console.log).toHaveBeenCalled();
+  });
+
+  //Tests the filer content function
+  it('should filter content', () => {
+    component.recipeFilter.categories = ['cat', 'dog'];
+    component.recipeFilter.cuisines = ['fish', 'cake'];
+    component.recipeFilter.gluten = true;
+    component.recipeFilter.veg = true;
+    component.recipeFilter.name = 'Fish cake';
+    const rec: recipe = {
+      r_id: 8,
+      title: 'potato',
+      category: 'cat',
+      cuisine: 'fish',
+      vegetarian: true,
+      glutenFree: true,
+      image: 'string',
+      author: 'Tyler',
+      ingredients: ['potaot'],
+      instructions: ['Dont mess up']
+    };
+    const recs :recipe[] = [];
+    recs[0] = rec;
+
+    const recs2 :recipe[] = component.filterContent(recs);
+
+    expect(component.filterContent(recs)).toBeTruthy();
+  });
+
+  //Tests the substring function
+  it('should find substring', () => {
+    
+    expect(component.isSubstring('cod', 'coding')).toBeTrue();
+  });
+
 });
